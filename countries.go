@@ -4339,8 +4339,10 @@ func (c CountryCode) CallCodes() []CallCode { //nolint:gocyclo
 	case NON:
 		return []CallCode{}
 	case International:
-		return []CallCode{CallCode(800), CallCode(870), CallCode(875), CallCode(876), CallCode(877), CallCode(878), CallCode(879), CallCode(881),
-			CallCode(882), CallCode(883), CallCode(888), CallCode(979), CallCode(991)}
+		return []CallCode{
+			CallCode(800), CallCode(870), CallCode(875), CallCode(876), CallCode(877), CallCode(878), CallCode(879), CallCode(881),
+			CallCode(882), CallCode(883), CallCode(888), CallCode(979), CallCode(991),
+		}
 	case JPN:
 		return []CallCode{CallCode(81)}
 	case NonCountryInternationalFreephone:
@@ -5480,548 +5482,542 @@ func AllInfo() []*Country {
 func ByName(name string) CountryCode { //nolint:misspell,gocyclo
 	switch textPrepare(name) {
 	case "AU", "AUS", "AUSTRALIA", "AVSTRALIA", "AVSTRALIYA", "AUSTRALIYA", "AUSTRALIEN", "АВСТРАЛИЯ", "АВСТРАЛІЯ":
-    return AUS
-case "AT", "AUT", "AUSTRIA", "AVSTRIA", "AUSTRIYA", "AVSTRIYA", "ÖSTERREICH", "OESTERREICH", "АВСТРИЯ", "АВСТРІЯ":
-    return AUT
-case "AZ", "AZE", "AZERBAIJAN", "AYZERBAIJAN", "AZERBAIDJAN", "AYZERBAIDJAN", "ASERBAIDSCHAN", "АЗЕРБАЙДЖАН", "АЗЕРБАЙДЖАН":
-    return AZE
-case "AL", "ALB", "ALBANIA", "ALBANIYA", "ALBANIEN", "АЛБАНИЯ", "АЛБАНІЯ":
-    return ALB
-case "DZ", "DZA", "ALGERIA", "ALGERIYA", "ALGERIEN", "АЛЖИР", "АЛЖИР":
-    return DZA
-case "AS", "ASM", "AMERICANSAMOA", "AMERICASAMOA", "SAMOAAMERICAN", "SAMOAMERICAN", "SAMOAMERICA", "AMERIKANISCHSAMOA", "АМЕРИКАНСКОЕ САМОА", "АМЕРИКАНСЬКЕ САМОА":
-    return ASM
-case "AI", "AIA", "ANGUILLA", "ANGUILA", "АНГИЛЬЯ", "АНГІЛЬЯ":
-    return AIA
-case "XEN", "ENG", "ENGLAND", "INGLAND", "АНГЛИЯ", "АНГЛІЯ":
-    return GBR
-case "AO", "AGO", "ANGOLA", "ANGOLIA", "АНГОЛА", "АНГОЛА":
-    return AGO
-case "AD", "AND", "ANDORRA", "ANDORA", "АНДОРРА", "АНДОРРА":
-    return AND
-case "AQ", "ATA", "NQ", "ATB", "ATN", "BQAQ", "NQAQ", "ANTARCTICA", "ANTARKTICA", "ANTARCTIKA", "ANTARKTIKA", "ANTARCTIC", "ANTARKTIC", "ANTARCTIK", "ANTARKTIK", "ANTARKTIS", "АНТАРКТИДА", "АНТАРКТИДА":
-    return ATA
-case "AG", "ATG", "ANTIGUAANDBARBUDA", "ANTIGUABARBUDA", "ANTIGUA", "ANTIGUAUNDBARBUDA", "АНТИГУА И БАРБУДА", "АНТИГУА І БАРБУДА":
-    return ATG
-case "AN", "ANT", "AHO", "ANHH", "NETHERLANDSANTILLES", "NETHERLSANTILLES", "NETHERLANDSANTILES", "NETHERLSANTILES", "NIEDERLAENDISCHEANTILLEN", "NIEDERLÄNDISCHANTILLEN", "НИДЕРЛАНДСКИЕ АНТИЛЫ", "НІДЕРЛАНДСЬКІ АНТИЛИ":
-    return ANT
-case "AE", "ARE", "UAE", "UNITEDARABEMIRATES", "ARABEMIRATES", "UNITEDEMIRATES", "VEREINIGTEARABISCHEEMIRATE", "ОАЭ", "ОАЕ":
-    return ARE
-case "AR", "ARG", "ARGENTINA", "ARGENTIN", "RA", "ARGENTINIEN", "АРГЕНТИНА", "АРГЕНТИНА":
-    return ARG
-case "AM", "ARM", "ARMENIA", "ARMENIYA", "ARMENIAN", "ARMENIEN", "АРМЕНИЯ", "ВІРМЕНІЯ":
-    return ARM
-case "AW", "ABW", "ARUBA", "АРУБА", "АРУБА":
-    return ABW
-case "AF", "AFG", "AFGHANISTAN", "AFHANISTAN", "AFGANISTAN", "AFGHANIAN", "AFGANIAN", "AFGHAN", "AFGHANI", "АФГАНИСТАН", "АФГАНІСТАН":
-    return AFG
-case "BS", "BHS", "BAHAMAS", "BAGHAMAS", "BAGAMAS", "BAHAMIAN", "BAGAMIAN", "БАГАМЫ", "БАГАМИ":
-    return BHS
-case "BD", "BGD", "BANGLADESH", "BANGLADEH", "BANHGLADESH", "BANHLADESH", "BANHLADEH", "БАНГЛАДЕШ", "БАНГЛАДЕШ":
-    return BGD
-case "BB", "BRB", "BAR", "BDS", "BARBADOS", "BARBODOS", "БАРБАДОС", "БАРБАДОС":
-    return BRB
-case "BH", "BHR", "BAHRAIN", "BAGHRAIN", "БАХРЕЙН", "БАХРЕЙН":
-    return BHR
-case "BY", "BLR", "BYS", "BYAA", "BELARUS", "BELORUS", "BELLARUSSIA", "BELARUSSIA", "BELLORUSSIA", "BELORUSSIA", "BELLARUSSIAN", "BELARUSSIAN", "BELLORUSSIAN", "BELORUSSIAN", "BYELORUSSIAN", "BYELORUSSIA", "BYELORUSSIYA", "WEISSRUSSLAND", "БЕЛАРУСЬ", "БІЛОРУСЬ":
-    return BLR
-case "BZ", "BLZ", "BIZ", "BELIZE", "БЕЛИЗ", "БЕЛІЗ":
-    return BLZ
-case "BE", "BEL", "BELGIUM", "BELGUM", "BELGIEN", "БЕЛЬГИЯ", "БЕЛЬГІЯ":
-    return BEL
-case "BJ", "BEN", "DHY", "BENIN", "DY", "DYBJ", "БЕНИН", "БЕНІН":
-    return BEN
-case "BM", "BMU", "BERMUDA", "BERMUDS", "BERMUD", "БЕРМУДЫ", "БЕРМУДИ":
-    return BMU
-case "BG", "BGR", "BULGARIA", "BULGARIYA", "BULGARY", "BOLGARIA", "BOLGARIYA", "BULGARIEN", "БОЛГАРИЯ", "БОЛГАРІЯ":
-    return BGR
-case "BO", "BOL", "BOLIVIA", "BOLIVIYA", "BOLIVIAN", "BOLIVIAPLURINATIONALSTATEOF", "BOLIVIAPLURINATIONALSTATE", "BOLIVIEN", "БОЛИВИЯ", "БОЛІВІЯ":
-    return BOL
-case "BA", "BIH", "BOSNIAANDHERZEGOVINA", "BOSNIAHERZEGOVINA", "BOSNIA", "BOSNIEN", "BOSNIENUNDHERZEGOWINA", "БОСНИЯ И ГЕРЦЕГОВИНА", "БОСНІЯ І ГЕРЦЕГОВИНА":
-    return BIH
-case "BW", "BWA", "BOTSWANA", "BOTSWANNA", "BOTSVANA", "BOTSVANNA", "БОТСВАНА", "БОТСВАНА":
-    return BWA
-case "BR", "BRA", "BRAZIL", "BRAZILIA", "BRAZILIYA", "BRAZILIAN", "BRASILIEN", "REPUBLICOFBRAZIL", "FEDERATIVEREPUBLICOFBRAZIL", "БРАЗИЛИЯ", "БРАЗИЛІЯ":
-    return BRA
-case "IO", "IOT", "BRITISHINDIANOCEANTERRITORY", "BRITISHINDIANTERRITORY", "BRITISCHESTERRITORIUM", "BRITISCHESTERRITORIUMIMINDISCHENOZEAN", "БРИТАНСКАЯ ТЕРРИТОРИЯ В ИНДИЙСКОМ ОКЕАНЕ", "БРИТАНСЬКА ТЕРИТОРІЯ В ІНДІЙСЬКОМУ ОКЕАНІ":
-    return IOT
-case "BN", "BRN", "BRU", "BRUNEI", "BRUNEY", "BRUNEIDARUSSALAM", "БРУНЕЙ":
-	return BRN
-	
-	case "BF", "BFA", "HV", "HVO", "BURKINAFASO", "BURKINAANDFASO", "BURCINAFASO", "BURCINAANDFASO", "HVBF", "БУРКИНА-ФАСО", "БУРКІНА-ФАСО":
-    return BFA
-case "BI", "BDI", "BURUNDI", "БУРУНДИ", "БУРАНДІ":
-    return BDI
-case "BT", "BTN", "BHUTAN", "BGHUTAN", "БУТАН", "БУТАН":
-    return BTN
-case "VU", "VUT", "NHB", "VANUATU", "NH", "NHVU", "ВАНУАТУ", "ВАНУАТУ":
-    return VUT
-case "VA", "VAT", "HOLYSEEVATICAN", "HOLYSEE", "VATICAN", "VATICANCITYSTATE", "VATICANSTATE", "HOLYSEEVATIKAN", "VATIKAN", "VATIKANCITYSTATE", "VATIKANSTATE", "HOLYSEEVATIKANCITYSTATE", "VATIKANSTADT", "VATICANCITY", "CITYVATICAN", "ВАТИКАН", "ВАТИКАН":
-    return VAT
-case "GB", "DG", "GBR", "ADN", "DGA", "UNITEDKINGDOM", "UNITEDKINDOM", "UK", "GREATBRITAN", "GREATBRITAIN", "NORTHERNIRELAND", "BRITAN", "BRITAIN", "GROSSBRITANNIEN", "VEREINIGTESKÖNIGREICH", "VEREINIGTESKOENIGREICH", "ВЕЛИКОБРИТАНИЯ", "ВЕЛИКОБРИТАНІЯ":
-    return GBR
-case "HU", "HUN", "HUNGARY", "HUNGAR", "HUNGARI", "VENGRIYA", "VENGRIA", "UNGARN", "ВЕНГРИЯ", "УГОРЩИНА":
-    return HUN
-case "VE", "VEN", "VENEZUELA", "VENEZUELLA", "VENECUELA", "VENECUELLA", "YV", "BOLIVARIANREPUBLICOF", "BOLIVARIANREPUBLIC", "REPUBLICOFBOLIVARIAN", "REPUBLICBOLIVARIAN", "BOLIVARIAN", "ВЕНЕСУЭЛА", "ВЕНЕСУЕЛА":
-    return VEN
-case "VG", "VGB", "IVB", "VIRGINISLANDSBRITISH", "VIRGINISLANDSBRITIH", "VIRGINISLSBRITIH", "VIRGINISLSBRITISH", "VIRGINISLANDSGB", "VIRGINISLANDSUK", "BRITISCHEJUNGFERNINSELN", "BRITISHVIRGINISLANDS", "БРИТАНСКИЕ ВИРГИНСКИЕ ОСТРОВА", "БРИТАНСЬКІ ВІРГІНСЬКІ ОСТРОВИ":
-    return VGB
-case "VI", "VIR", "ISV", "VIRGINISLANDSUS", "USVIRGINISLANDS", "USVI", "AMERIKANISCHEJUNGFERNINSELN", "ВИРГИНСКИЕ ОСТРОВА США", "ВІРГІНСЬКІ ОСТРОВИ США":
-    return VIR
-case "TL", "TP", "TLS", "TMP", "TPTL", "TIMORLESTE", "EASTTIMOR", "TIMOR", "TIMORELESTE", "EASTTIMORE", "TIMORE", "TIMORLESTEEASTTIMORE", "OSTTIMOR", "ТИМОР-ЛЕШТИ", "СХІДНИЙ ТІМОР":
-    return TLS
-case "VN", "VNM", "VIE", "VDR", "VD", "VIETNAM", "VETNAM", "VIETNAME", "VETNAME", "VDVN", "VIỆTNAM", "CỘNGHÒAXÃHỘICHỦNGHĨAVIỆTNAM", "CHỦNGHĨAVIỆTNAM", "NGHĨAVIỆTNAM", "ВЬЕТНАМ", "В'ЄТНАМ":
-    return VNM
-case "GA", "GAB", "GABON", "GABUN", "ГАБОН", "ГАБОН":
-    return GAB
-case "HT", "HTI", "HAITI", "GAITI", "ГАИТИ", "ГАЇТІ":
-    return HTI
-case "GY", "GUY", "GUYANA", "ГАЙАНА", "ГАЙАНА":
-    return GUY
-case "GM", "GMB", "WAG", "GAMBIA", "GAMBIYA", "ГАМБИЯ", "ГАМБІЯ":
-    return GMB
-case "GH", "GHA", "GHANA", "HANA", "ГАНА", "ГАНА":
-    return GHA
-case "GP", "GLP", "GUADELOUPE", "GUADELUPE", "GUADELOOPE", "GUADELOUPA", "GUADELUPA", "GUADELOOPA", "ГВАДЕЛУПА", "ГВАДЕЛУПА":
-    return GLP
-case "GT", "GTM", "GCA", "GUATEMALA", "ГВАТЕМАЛА", "ГВАТЕМАЛА":
-    return GTM
-case "GN", "GIN", "GUINEA", "GUINEYA", "ГВИНЕЯ", "ГВІНЕЯ":
-    return GIN
-case "GW", "GNB", "GBS", "GUINEABISSAU", "ГВИНЕЯ-БИСАУ", "ГВІНЕЯ-БІСАУ":
-    return GNB
-case "DE", "DEU", "DD", "DDR", "GER", "GERMANY", "GERMANIYA", "DEUTSCHLAND", "DEUTSCH", "DDDE", "ГЕРМАНИЯ", "НІМЕЧЧИНА":
-    return DEU
-case "GI", "GIB", "GBZ", "GIBRALTAR", "HIBRALTAR", "ГИБРАЛТАР", "ҐІБРАЛТАР":
-    return GIB
-case "HN", "HND", "HONDURAS", "GONDURAS", "ГОНДУРАС", "ГОНДУРАС":
-    return HND
-case "HK", "HKG", "HONGKONG", "HONKONG", "ГОНКОНГ", "ГОНКОНГ":
-    return HKG
-case "GD", "GRD", "GRENADA", "GRINADA", "WG", "ГРЕНАДА", "ҐРЕНАДА":
-    return GRD
-case "GL", "GRL", "GREENLAND", "GRÖNLAND", "GROENLAND", "ГРЕНЛАНДИЯ", "ҐРЕНЛАНДІЯ":
-    return GRL
-case "GR", "GRC", "GREECE", "GRECE", "GRIECHENLAND", "GRECIYA", "ГРЕЦИЯ", "ГРЕЦІЯ":
-    return GRC
-	
+		return AUS
+	case "AT", "AUT", "AUSTRIA", "AVSTRIA", "AUSTRIYA", "AVSTRIYA", "ÖSTERREICH", "OESTERREICH", "АВСТРИЯ", "АВСТРІЯ":
+		return AUT
+	case "AZ", "AZE", "AZERBAIJAN", "AYZERBAIJAN", "AZERBAIDJAN", "AYZERBAIDJAN", "ASERBAIDSCHAN", "АЗЕРБАЙДЖАН":
+		return AZE
+	case "AL", "ALB", "ALBANIA", "ALBANIYA", "ALBANIEN", "АЛБАНИЯ", "АЛБАНІЯ":
+		return ALB
+	case "DZ", "DZA", "ALGERIA", "ALGERIYA", "ALGERIEN", "АЛЖИР":
+		return DZA
+	case "AS", "ASM", "AMERICANSAMOA", "AMERICASAMOA", "SAMOAAMERICAN", "SAMOAMERICAN", "SAMOAMERICA", "AMERIKANISCHSAMOA", "АМЕРИКАНСКОЕСАМОА", "АМЕРИКАНСЬКЕСАМОА":
+		return ASM
+	case "AI", "AIA", "ANGUILLA", "ANGUILA", "АНГИЛЬЯ", "АНГІЛЬЯ":
+		return AIA
+	case "XEN", "ENG", "ENGLAND", "INGLAND", "АНГЛИЯ", "АНГЛІЯ":
+		return GBR
+	case "AO", "AGO", "ANGOLA", "ANGOLIA", "АНГОЛА":
+		return AGO
+	case "AD", "AND", "ANDORRA", "ANDORA", "АНДОРРА":
+		return AND
+	case "AQ", "ATA", "NQ", "ATB", "ATN", "BQAQ", "NQAQ", "ANTARCTICA", "ANTARKTICA", "ANTARCTIKA", "ANTARKTIKA", "ANTARCTIC", "ANTARKTIC", "ANTARCTIK", "ANTARKTIK", "ANTARKTIS", "АНТАРКТИДА":
+		return ATA
+	case "AG", "ATG", "ANTIGUAANDBARBUDA", "ANTIGUABARBUDA", "ANTIGUA", "ANTIGUAUNDBARBUDA", "АНТИГУАИБАРБУДА", "АНТИГУАІБАРБУДА":
+		return ATG
+	case "AN", "ANT", "AHO", "ANHH", "NETHERLANDSANTILLES", "NETHERLSANTILLES", "NETHERLANDSANTILES", "NETHERLSANTILES", "NIEDERLAENDISCHEANTILLEN", "NIEDERLÄNDISCHANTILLEN", "НИДЕРЛАНДСКИЕАНТИЛЫ", "НІДЕРЛАНДСЬКІАНТИЛИ":
+		return ANT
+	case "AE", "ARE", "UAE", "UNITEDARABEMIRATES", "ARABEMIRATES", "UNITEDEMIRATES", "VEREINIGTEARABISCHEEMIRATE", "ОАЭ", "ОАЕ", "АРАБСКИЕЭМИРАТЫ", "АРАБСЬКІЭМИРАТИ":
+		return ARE
+	case "AR", "ARG", "ARGENTINA", "ARGENTIN", "RA", "ARGENTINIEN", "АРГЕНТИНА":
+		return ARG
+	case "AM", "ARM", "ARMENIA", "ARMENIYA", "ARMENIAN", "ARMENIEN", "АРМЕНИЯ", "ВІРМЕНІЯ":
+		return ARM
+	case "AW", "ABW", "ARUBA", "АРУБА":
+		return ABW
+	case "AF", "AFG", "AFGHANISTAN", "AFHANISTAN", "AFGANISTAN", "AFGHANIAN", "AFGANIAN", "AFGHAN", "AFGHANI", "АФГАНИСТАН", "АФГАНІСТАН":
+		return AFG
+	case "BS", "BHS", "BAHAMAS", "BAGHAMAS", "BAGAMAS", "BAHAMIAN", "BAGAMIAN", "БАГАМЫ", "БАГАМИ":
+		return BHS
+	case "BD", "BGD", "BANGLADESH", "BANGLADEH", "BANHGLADESH", "BANHLADESH", "BANHLADEH", "БАНГЛАДЕШ":
+		return BGD
+	case "BB", "BRB", "BAR", "BDS", "BARBADOS", "BARBODOS", "БАРБАДОС":
+		return BRB
+	case "BH", "BHR", "BAHRAIN", "BAGHRAIN", "БАХРЕЙН":
+		return BHR
+	case "BY", "BLR", "BYS", "BYAA", "BELARUS", "BELORUS", "BELLARUSSIA", "BELARUSSIA", "BELLORUSSIA", "BELORUSSIA", "BELLARUSSIAN", "BELARUSSIAN", "BELLORUSSIAN", "BELORUSSIAN", "BYELORUSSIAN", "BYELORUSSIA", "BYELORUSSIYA", "WEISSRUSSLAND", "БЕЛАРУСЬ", "БІЛОРУСЬ":
+		return BLR
+	case "BZ", "BLZ", "BIZ", "BELIZE", "БЕЛИЗ", "БЕЛІЗ":
+		return BLZ
+	case "BE", "BEL", "BELGIUM", "BELGUM", "BELGIEN", "БЕЛЬГИЯ", "БЕЛЬГІЯ":
+		return BEL
+	case "BJ", "BEN", "DHY", "BENIN", "DY", "DYBJ", "БЕНИН", "БЕНІН":
+		return BEN
+	case "BM", "BMU", "BERMUDA", "BERMUDS", "BERMUD", "БЕРМУДЫ", "БЕРМУДИ":
+		return BMU
+	case "BG", "BGR", "BULGARIA", "BULGARIYA", "BULGARY", "BOLGARIA", "BOLGARIYA", "BULGARIEN", "БОЛГАРИЯ", "БОЛГАРІЯ":
+		return BGR
+	case "BO", "BOL", "BOLIVIA", "BOLIVIYA", "BOLIVIAN", "BOLIVIAPLURINATIONALSTATEOF", "BOLIVIAPLURINATIONALSTATE", "BOLIVIEN", "БОЛИВИЯ", "БОЛІВІЯ":
+		return BOL
+	case "BA", "BIH", "BOSNIAANDHERZEGOVINA", "BOSNIAHERZEGOVINA", "BOSNIA", "BOSNIEN", "BOSNIENUNDHERZEGOWINA", "БОСНИЯИГЕРЦЕГОВИНА", "БОСНІЯІГЕРЦЕГОВИНА":
+		return BIH
+	case "BW", "BWA", "BOTSWANA", "BOTSWANNA", "BOTSVANA", "BOTSVANNA", "БОТСВАНА":
+		return BWA
+	case "BR", "BRA", "BRAZIL", "BRAZILIA", "BRAZILIYA", "BRAZILIAN", "BRASILIEN", "REPUBLICOFBRAZIL", "FEDERATIVEREPUBLICOFBRAZIL", "БРАЗИЛИЯ", "БРАЗИЛІЯ":
+		return BRA
+	case "IO", "IOT", "BRITISHINDIANOCEANTERRITORY", "BRITISHINDIANTERRITORY", "BRITISCHESTERRITORIUM", "BRITISCHESTERRITORIUMIMINDISCHENOZEAN", "БРИТАНСКАЯТЕРРИТОРИЯВИНДИЙСКОМОКЕАНЕ", "БРИТАНСЬКАТЕРИТОРІЯВІНДІЙСЬКОМУОКЕАНІ":
+		return IOT
+	case "BN", "BRN", "BRU", "BRUNEI", "BRUNEY", "BRUNEIDARUSSALAM", "БРУНЕЙ":
+		return BRN
+
+	case "BF", "BFA", "HV", "HVO", "BURKINAFASO", "BURKINAANDFASO", "BURCINAFASO", "BURCINAANDFASO", "HVBF", "БУРКИНАФАСО", "БУРКІНАФАСО":
+		return BFA
+	case "BI", "BDI", "BURUNDI", "БУРУНДИ", "БУРАНДІ":
+		return BDI
+	case "BT", "BTN", "BHUTAN", "BGHUTAN", "БУТАН":
+		return BTN
+	case "VU", "VUT", "NHB", "VANUATU", "NH", "NHVU", "ВАНУАТУ":
+		return VUT
+	case "VA", "VAT", "HOLYSEEVATICAN", "HOLYSEE", "VATICAN", "VATICANCITYSTATE", "VATICANSTATE", "HOLYSEEVATIKAN", "VATIKAN", "VATIKANCITYSTATE", "VATIKANSTATE", "HOLYSEEVATIKANCITYSTATE", "VATIKANSTADT", "VATICANCITY", "CITYVATICAN", "ВАТИКАН":
+		return VAT
+	case "GB", "DG", "GBR", "ADN", "DGA", "UNITEDKINGDOM", "UNITEDKINDOM", "UK", "GREATBRITAN", "GREATBRITAIN", "NORTHERNIRELAND", "BRITAN", "BRITAIN", "GROSSBRITANNIEN", "VEREINIGTESKÖNIGREICH", "VEREINIGTESKOENIGREICH", "ВЕЛИКОБРИТАНИЯ", "ВЕЛИКОБРИТАНІЯ":
+		return GBR
+	case "HU", "HUN", "HUNGARY", "HUNGAR", "HUNGARI", "VENGRIYA", "VENGRIA", "UNGARN", "ВЕНГРИЯ", "УГОРЩИНА":
+		return HUN
+	case "VE", "VEN", "VENEZUELA", "VENEZUELLA", "VENECUELA", "VENECUELLA", "YV", "BOLIVARIANREPUBLICOF", "BOLIVARIANREPUBLIC", "REPUBLICOFBOLIVARIAN", "REPUBLICBOLIVARIAN", "BOLIVARIAN", "ВЕНЕСУЭЛА", "ВЕНЕСУЕЛА":
+		return VEN
+	case "VG", "VGB", "IVB", "VIRGINISLANDSBRITISH", "VIRGINISLANDSBRITIH", "VIRGINISLSBRITIH", "VIRGINISLSBRITISH", "VIRGINISLANDSGB", "VIRGINISLANDSUK", "BRITISCHEJUNGFERNINSELN", "BRITISHVIRGINISLANDS", "БРИТАНСКИЕВИРГИНСКИЕОСТРОВА", "БРИТАНСЬКІВІРГІНСЬКІОСТРОВИ":
+		return VGB
+	case "VI", "VIR", "ISV", "VIRGINISLANDSUS", "USVIRGINISLANDS", "USVI", "AMERIKANISCHEJUNGFERNINSELN", "ВИРГИНСКИЕОСТРОВАСША", "ВІРГІНСЬКІОСТРОВИСША":
+		return VIR
+	case "TL", "TP", "TLS", "TMP", "TPTL", "TIMORLESTE", "EASTTIMOR", "TIMOR", "TIMORELESTE", "EASTTIMORE", "TIMORE", "TIMORLESTEEASTTIMORE", "OSTTIMOR", "ТИМОРЛЕШТИ", "СХІДНИЙТІМОР":
+		return TLS
+	case "VN", "VNM", "VIE", "VDR", "VD", "VIETNAM", "VETNAM", "VIETNAME", "VETNAME", "VDVN", "VIỆTNAM", "CỘNGHÒAXÃHỘICHỦNGHĨAVIỆTNAM", "CHỦNGHĨAVIỆTNAM", "NGHĨAVIỆTNAM", "ВЬЕТНАМ", "ВЄТНАМ":
+		return VNM
+	case "GA", "GAB", "GABON", "GABUN", "ГАБОН":
+		return GAB
+	case "HT", "HTI", "HAITI", "GAITI", "ГАИТИ", "ГАЇТІ":
+		return HTI
+	case "GY", "GUY", "GUYANA", "ГАЙАНА":
+		return GUY
+	case "GM", "GMB", "WAG", "GAMBIA", "GAMBIYA", "ГАМБИЯ", "ГАМБІЯ":
+		return GMB
+	case "GH", "GHA", "GHANA", "HANA", "ГАНА":
+		return GHA
+	case "GP", "GLP", "GUADELOUPE", "GUADELUPE", "GUADELOOPE", "GUADELOUPA", "GUADELUPA", "GUADELOOPA", "ГВАДЕЛУПА":
+		return GLP
+	case "GT", "GTM", "GCA", "GUATEMALA", "ГВАТЕМАЛА":
+		return GTM
+	case "GN", "GIN", "GUINEA", "GUINEYA", "ГВИНЕЯ", "ГВІНЕЯ":
+		return GIN
+	case "GW", "GNB", "GBS", "GUINEABISSAU", "ГВИНЕЯБИСАУ", "ГВІНЕЯБІСАУ":
+		return GNB
+	case "DE", "DEU", "DD", "DDR", "GER", "GERMANY", "GERMANIYA", "DEUTSCHLAND", "DEUTSCH", "DDDE", "ГЕРМАНИЯ", "НІМЕЧЧИНА":
+		return DEU
+	case "GI", "GIB", "GBZ", "GIBRALTAR", "HIBRALTAR", "ГИБРАЛТАР", "ҐІБРАЛТАР":
+		return GIB
+	case "HN", "HND", "HONDURAS", "GONDURAS", "ГОНДУРАС":
+		return HND
+	case "HK", "HKG", "HONGKONG", "HONKONG", "ГОНКОНГ":
+		return HKG
+	case "GD", "GRD", "GRENADA", "GRINADA", "WG", "ГРЕНАДА", "ҐРЕНАДА":
+		return GRD
+	case "GL", "GRL", "GREENLAND", "GRÖNLAND", "GROENLAND", "ГРЕНЛАНДИЯ", "ҐРЕНЛАНДІЯ":
+		return GRL
+	case "GR", "GRC", "GREECE", "GRECE", "GRIECHENLAND", "GRECIYA", "ГРЕЦИЯ", "ГРЕЦІЯ":
+		return GRC
+
 	case "GE", "GEO", "GEORGIA", "GEORGIYA", "GEORGIEN", "GRUZIYA", "ГРУЗИЯ", "ГРУЗІЯ":
-    return GEO
-case "GU", "GUM", "GUAM", "ГУАМ", "ГУАМ":
-    return GUM
-case "DK", "DNK", "DENMARK", "DANMARK", "DÄNEMARK", "DAENEMARK", "KONGERIGETDANMARK", "DANMARKKONGERIGET", "DANIYA", "ДАНИЯ", "ДАНІЯ":
-    return DNK
-case "CD", "COD", "ZRE", "ZAR", "ZR", "ZRCD", "CONGODEMOCRATICREPUBLIC", "DEMOCRATICREPUBLICOFTHECONGO", "CONGODEMOCRATICREP", "CONGODEMOCRATIC", "CONGOTHEDEMOCRATICREPUBLICOF", "CONGOTHEDEMOCRATICREPUBLIC", "KONGODEMOCRACTICREPUBLIC", "KONGODEMOCRATICREP", "KONGODEMOCRATIC", "KONGOTHEDEMOCRATICREPUBLICOF", "ZAIRE", "ZAIR", "DEMOKRATISCHEREPUBLIKKONGO", "CONGOREPUBLIC", "KONGOREPUBLIC", "REPUBLICOFCONGO", "REPUBLICOFKONGO", "CONGOTHEDEMOCRATICREPUBLICOFTHE", "DRCONGO", "КОНГО", "КОНГО":
-    return COD
-case "DJ", "DJI", "AFI", "DJIBOUTI", "AIDJ", "DSCHIBUTI", "ДЖИБУТИ", "ДЖІБУТІ":
-    return DJI
-case "DM", "DMA", "DOMINICA", "DOMINIKA", "ДОМИНИКА", "ДОМІНІКА":
-    return DMA
-case "DO", "DOM", "DOMINICANREPUBLIC", "DOMINICANA", "DOMINIKANA", "DOMINIKANISCHEREPUBLIK", "ДОМИНИКАНСКАЯ РЕСПУБЛИКА", "ДОМІНІКАНСЬКА РЕСПУБЛІКА":
-    return DOM
-case "EG", "EGY", "EGYPT", "ÄGYPTEN", "AEGYPTEN", "ЕГИПЕТ", "ЄГИПЕТ":
-    return EGY
-case "ZM", "ZMB", "RNR", "ZAMBIA", "SAMBIA", "ЗАМБИЯ", "ЗАМБІЯ":
-    return ZMB
-case "EH", "ESH", "WESTERNSAHARA", "WESTSAHARA", "ЗАПАДНАЯ САХАРА", "ЗАХІДНА САХАРА":
-    return ESH
-case "ZW", "ZWE", "ZIM", "RHO", "RSR", "ZIMBABWE", "ZIMBABVE", "RH", "RHZW", "SIMBABWE", "ЗИМБАБВЕ", "ЗІМБАБВЕ":
-    return ZWE
-case "IL", "ISR", "ISRAEL", "IZRAIL", "ISRAIL", "ISRAILIAN", "IZRAILEN", "ИЗРАИЛЬ", "ІЗРАЇЛЬ":
-    return ISR
-case "IN", "IND", "INDIA", "INDIAN", "INDIYA", "SKM", "SKIN", "INDIEN", "ИНДИЯ", "ІНДІЯ":
-    return IND
-case "ID", "IDN", "INA", "INDONESIA", "REPUBLICOFINDONESIA", "RI", "INDONESIEN", "ИНДОНЕЗИЯ", "ІНДОНЕЗІЯ":
-    return IDN
-case "JO", "JOR", "HKJ", "JORDAN", "JORDANIEN", "ИОРДАНИЯ", "ЙОРДАНІЯ":
-    return JOR
-case "IQ", "IRQ", "IRAQ", "IRAK", "ИРАК", "ІРАК":
-    return IRQ
-case "IR", "IRN", "IRI", "IRAN", "IRANISLAMICREPUBLICOF", "IRANISLAMICREPUBLIC", "IRANIAN", "ИРАН", "ІРАН":
-    return IRN
-case "IE", "IRL", "IRELAND", "IRLAND", "ИРЛАНДИЯ", "ІРЛАНДІЯ":
-    return IRL
-case "IS", "ISL", "ICELAND", "ISLAND", "ИСЛАНДИЯ", "ІСЛАНДІЯ":
-    return ISL
-case "ES", "EA", "IC", "ESP", "SPAIN", "SPANIEN", "ISPANIA", "ИСПАНИЯ", "ІСПАНІЯ":
-    return ESP
-case "IT", "ITA", "ITALY", "ITALIYA", "ITALIEN", "ИТАЛИЯ", "ІТАЛІЯ":
-    return ITA
-case "YE", "YEM", "YMD", "YEMEN", "IEMEN", "YD", "YDYE", "JEMEN", "ЙЕМЕН", "ЄМЕН":
-    return YEM
-case "KZ", "KAZ", "KAZAKHSTAN", "KAZAHSTAN", "KASACHSTAN", "КАЗАХСТАН", "КАЗАХСТАН":
-    return KAZ
-	
-	case "KY", "CYM", "CAYMANISLANDS", "KAYMANISLANDS", "KAIMANINSELN", "КАЙМАНОВЫ ОСТРОВА", "КАЙМАНОВІ ОСТРОВИ":
-    return CYM
-case "KH", "KHM", "CAMBODIA", "KAMBODSCHA", "КАМБОДЖА", "КАМБОДЖА":
-    return KHM
-case "CM", "CMR", "CAMEROON", "KAMERUN", "КАМЕРУН", "КАМЕРУН":
-    return CMR
-case "CA", "CAN", "CDN", "CANADA", "KANADA", "КАНАДА", "КАНАДА":
-    return CAN
-case "QA", "QAT", "QATAR", "KATAR", "КАТАР", "КАТАР":
-    return QAT
-case "KE", "KEN", "EAK", "KENYA", "КЕНИЯ", "КЕНІЯ":
-    return KEN
-case "CY", "CYP", "CYPRUS", "CIPRUS", "ZYPERN", "REPUBLIKZYPERN", "КИПР", "КІПР":
-    return CYP
-case "KI", "KIR", "CT", "CTE", "CTKI", "KIRIBATI", "CIRIBATI", "KIRIBATY", "CIRIBATY", "КИРИБАТИ", "КІРІБАТІ":
-    return KIR
-case "CN", "CHN", "CHINA", "CHINESE", "RC", "KITAY", "КИТАЙ", "КИТАЙ":
-    return CHN
-case "CC", "CCK", "KEELING", "COCOS", "COCOSKEELINGISLANDS", "COCOSISLANDS", "KOKOSISLANDS", "KOKOSINSELN", "КОКОСОВЫЕ ОСТРОВА", "КОКОСОВІ ОСТРОВИ":
-    return CCK
-case "CO", "COL", "COLOMBIA", "KOLUMBIEN", "КОЛУМБИЯ", "КОЛУМБІЯ":
-    return COL
-case "KM", "COM", "COMOROS", "KOMOREN", "КОМОРЫ", "КОМОРИ":
-    return COM
-case "CG", "COG", "RCB", "CONGO", "KONGO", "КОНГО", "КОНГО":
-    return COG
-case "KP", "PRK", "DEMOCRATICPEOPLESREPUBLICOFKOREA", "KOREADEMOCRATICPEOPLESREPUBLICOF", "KOREADEMOCRATICPEOPLESREPUBLIC", "KOREANORTH", "NORTHKOREA", "NORDKOREA", "СЕВЕРНАЯ КОРЕЯ", "ПІВНІЧНА КОРЕЯ":
-    return PRK
-case "KR", "KOR", "ROK", "KOREA", "KOREYA", "SOUTHKOREA", "KOREAREPUBLICOF", "KOREAREPUBLIC", "REPUBLICOFKOREA", "KOREAREPOF", "SÜDKOREA", "SUEDKOREA", "ЮЖНАЯ КОРЕЯ", "ПІВДЕННА КОРЕЯ":
-    return KOR
-case "CR", "CRI", "COSTARICA", "KOSTARIKA", "KOSTARICA", "COSTARIKA", "КОСТА-РИКА", "КОСТА-РІКА":
-    return CRI
-case "CI", "CIV", "COTEDIVOIRE", "CÔTEDIVOIRE", "IVORYCOAST", "ELFENBEINKÜSTE", "ELFENBEINKUESTE", "КОТ-Д'ИВУАР", "КÓТ-Д'ІВУАР":
-    return CIV
-case "CU", "CUB", "CUBA", "CUBAREPUBLIC", "REPUBLICCUBA", "KUBA", "КУБА", "КУБА":
-    return CUB
-case "KW", "KWT", "KUWAIT", "КУВЕЙТ", "КУВЕЙТ":
-    return KWT
-case "KG", "KGZ", "KYRGYZSTAN", "KIRGISISTAN", "КИРГИЗИЯ", "КИРГИЗСТАН":
-    return KGZ
-case "LA", "LAO", "LAOS", "LAODEMOCRATICPEOPLESREPUBLIC", "LAOSDEMOCRATICPEOPLESREPUBLIC", "LAOPEOPLESDEMOCRATICREPUBLIC", "ЛАОС", "ЛАОС":
-    return LAO
-case "LV", "LVA", "LAT", "LATVIA", "LATVIYA", "LETTLAND", "ЛАТВИЯ", "ЛАТВІЯ":
-    return LVA
-case "LS", "LSO", "LESOTHO", "ЛЕСОТО", "ЛЕСОТО":
-    return LSO
-case "LR", "LBR", "LIBERIA", "ЛИБЕРИЯ", "ЛІБЕРІЯ":
-    return LBR
-case "LB", "LBN", "LEBANON", "RL", "LIBANON", "ЛИВАН", "ЛІВАН":
-    return LBN
-case "LY", "LBY", "LBA", "LIBYA", "LIVIA", "LIVIYA", "LIBYAN", "LIBYANARABJAMAHIRIYA", "LF", "LIBYEN", "ЛИВИЯ", "ЛІВІЯ":
-    return LBY
-case "LT", "LTU", "LITHUANIA", "LITAUEN", "LITVA", "ЛИТВА", "ЛИТВА":
-    return LTU
-	
+		return GEO
+	case "GU", "GUM", "GUAM", "ГУАМ":
+		return GUM
+	case "DK", "DNK", "DENMARK", "DANMARK", "DÄNEMARK", "DAENEMARK", "KONGERIGETDANMARK", "DANMARKKONGERIGET", "DANIYA", "ДАНИЯ", "ДАНІЯ":
+		return DNK
+	case "CD", "COD", "ZRE", "ZAR", "ZR", "ZRCD", "CONGODEMOCRATICREPUBLIC", "DEMOCRATICREPUBLICOFTHECONGO", "CONGODEMOCRATICREP", "CONGODEMOCRATIC", "CONGOTHEDEMOCRATICREPUBLICOF", "CONGOTHEDEMOCRATICREPUBLIC", "KONGODEMOCRACTICREPUBLIC", "KONGODEMOCRATICREP", "KONGODEMOCRATIC", "KONGOTHEDEMOCRATICREPUBLICOF", "ZAIRE", "ZAIR", "DEMOKRATISCHEREPUBLIKKONGO", "CONGOREPUBLIC", "KONGOREPUBLIC", "REPUBLICOFCONGO", "REPUBLICOFKONGO", "CONGOTHEDEMOCRATICREPUBLICOFTHE", "DRCONGO", "РЕСПУБЛІКАКОНГО":
+		return COD
+	case "DJ", "DJI", "AFI", "DJIBOUTI", "AIDJ", "DSCHIBUTI", "ДЖИБУТИ", "ДЖІБУТІ":
+		return DJI
+	case "DM", "DMA", "DOMINICA", "DOMINIKA", "ДОМИНИКА", "ДОМІНІКА":
+		return DMA
+	case "DO", "DOM", "DOMINICANREPUBLIC", "DOMINICANA", "DOMINIKANA", "DOMINIKANISCHEREPUBLIK", "ДОМИНИКАНСКАЯ РЕСПУБЛИКА", "ДОМІНІКАНСЬКА РЕСПУБЛІКА":
+		return DOM
+	case "EG", "EGY", "EGYPT", "ÄGYPTEN", "AEGYPTEN", "ЕГИПЕТ", "ЄГИПЕТ":
+		return EGY
+	case "ZM", "ZMB", "RNR", "ZAMBIA", "SAMBIA", "ЗАМБИЯ", "ЗАМБІЯ":
+		return ZMB
+	case "EH", "ESH", "WESTERNSAHARA", "WESTSAHARA", "ЗАПАДНАЯСАХАРА", "ЗАХІДНАСАХАРА":
+		return ESH
+	case "ZW", "ZWE", "ZIM", "RHO", "RSR", "ZIMBABWE", "ZIMBABVE", "RH", "RHZW", "SIMBABWE", "ЗИМБАБВЕ", "ЗІМБАБВЕ":
+		return ZWE
+	case "IL", "ISR", "ISRAEL", "IZRAIL", "ISRAIL", "ISRAILIAN", "IZRAILEN", "ИЗРАИЛЬ", "ІЗРАЇЛЬ":
+		return ISR
+	case "IN", "IND", "INDIA", "INDIAN", "INDIYA", "SKM", "SKIN", "INDIEN", "ИНДИЯ", "ІНДІЯ":
+		return IND
+	case "ID", "IDN", "INA", "INDONESIA", "REPUBLICOFINDONESIA", "RI", "INDONESIEN", "ИНДОНЕЗИЯ", "ІНДОНЕЗІЯ":
+		return IDN
+	case "JO", "JOR", "HKJ", "JORDAN", "JORDANIEN", "ИОРДАНИЯ", "ЙОРДАНІЯ":
+		return JOR
+	case "IQ", "IRQ", "IRAQ", "IRAK", "ИРАК", "ІРАК":
+		return IRQ
+	case "IR", "IRN", "IRI", "IRAN", "IRANISLAMICREPUBLICOF", "IRANISLAMICREPUBLIC", "IRANIAN", "ИРАН", "ІРАН":
+		return IRN
+	case "IE", "IRL", "IRELAND", "IRLAND", "ИРЛАНДИЯ", "ІРЛАНДІЯ":
+		return IRL
+	case "IS", "ISL", "ICELAND", "ISLAND", "ИСЛАНДИЯ", "ІСЛАНДІЯ":
+		return ISL
+	case "ES", "EA", "IC", "ESP", "SPAIN", "SPANIEN", "ISPANIA", "ИСПАНИЯ", "ІСПАНІЯ":
+		return ESP
+	case "IT", "ITA", "ITALY", "ITALIYA", "ITALIEN", "ИТАЛИЯ", "ІТАЛІЯ":
+		return ITA
+	case "YE", "YEM", "YMD", "YEMEN", "IEMEN", "YD", "YDYE", "JEMEN", "ЙЕМЕН", "ЄМЕН":
+		return YEM
+	case "KZ", "KAZ", "KAZAKHSTAN", "KAZAHSTAN", "KASACHSTAN", "КАЗАХСТАН":
+		return KAZ
+	case "KY", "CYM", "CAYMANISLANDS", "KAYMANISLANDS", "KAIMANINSELN", "КАЙМАНОВЫОСТРОВА", "КАЙМАНОВІОСТРОВИ":
+		return CYM
+	case "KH", "KHM", "CAMBODIA", "KAMBODSCHA", "КАМБОДЖА":
+		return KHM
+	case "CM", "CMR", "CAMEROON", "KAMERUN", "КАМЕРУН":
+		return CMR
+	case "CA", "CAN", "CDN", "CANADA", "KANADA", "КАНАДА":
+		return CAN
+	case "QA", "QAT", "QATAR", "KATAR", "КАТАР":
+		return QAT
+	case "KE", "KEN", "EAK", "KENYA", "КЕНИЯ", "КЕНІЯ":
+		return KEN
+	case "CY", "CYP", "CYPRUS", "CIPRUS", "ZYPERN", "REPUBLIKZYPERN", "КИПР", "КІПР":
+		return CYP
+	case "KI", "KIR", "CT", "CTE", "CTKI", "KIRIBATI", "CIRIBATI", "KIRIBATY", "CIRIBATY", "КИРИБАТИ", "КІРІБАТІ":
+		return KIR
+	case "CN", "CHN", "CHINA", "CHINESE", "RC", "KITAY", "КИТАЙ":
+		return CHN
+	case "CC", "CCK", "KEELING", "COCOS", "COCOSKEELINGISLANDS", "COCOSISLANDS", "KOKOSISLANDS", "KOKOSINSELN", "КОКОСОВЫЕОСТРОВА", "КОКОСОВІОСТРОВИ":
+		return CCK
+	case "CO", "COL", "COLOMBIA", "KOLUMBIEN", "КОЛУМБИЯ", "КОЛУМБІЯ":
+		return COL
+	case "KM", "COM", "COMOROS", "KOMOREN", "КОМОРЫ", "КОМОРИ":
+		return COM
+	case "CG", "COG", "RCB", "CONGO", "KONGO", "КОНГО":
+		return COG
+	case "KP", "PRK", "DEMOCRATICPEOPLESREPUBLICOFKOREA", "KOREADEMOCRATICPEOPLESREPUBLICOF", "KOREADEMOCRATICPEOPLESREPUBLIC", "KOREANORTH", "NORTHKOREA", "NORDKOREA", "СЕВЕРНАЯКОРЕЯ", "ПІВНІЧНАКОРЕЯ":
+		return PRK
+	case "KR", "KOR", "ROK", "KOREA", "KOREYA", "SOUTHKOREA", "KOREAREPUBLICOF", "KOREAREPUBLIC", "REPUBLICOFKOREA", "KOREAREPOF", "SÜDKOREA", "SUEDKOREA", "ЮЖНАЯКОРЕЯ", "ПІВДЕННАКОРЕЯ":
+		return KOR
+	case "CR", "CRI", "COSTARICA", "KOSTARIKA", "KOSTARICA", "COSTARIKA", "КОСТАРИКА", "КОСТАРІКА":
+		return CRI
+	case "CI", "CIV", "COTEDIVOIRE", "CÔTEDIVOIRE", "IVORYCOAST", "ELFENBEINKÜSTE", "ELFENBEINKUESTE", "КОТДИВУАР", "КОТДІВУАР":
+		return CIV
+	case "CU", "CUB", "CUBA", "CUBAREPUBLIC", "REPUBLICCUBA", "KUBA", "КУБА":
+		return CUB
+	case "KW", "KWT", "KUWAIT", "КУВЕЙТ":
+		return KWT
+	case "KG", "KGZ", "KYRGYZSTAN", "KIRGISISTAN", "КИРГИЗИЯ", "КИРГИЗСТАН":
+		return KGZ
+	case "LA", "LAO", "LAOS", "LAODEMOCRATICPEOPLESREPUBLIC", "LAOSDEMOCRATICPEOPLESREPUBLIC", "LAOPEOPLESDEMOCRATICREPUBLIC", "ЛАОС":
+		return LAO
+	case "LV", "LVA", "LAT", "LATVIA", "LATVIYA", "LETTLAND", "ЛАТВИЯ", "ЛАТВІЯ":
+		return LVA
+	case "LS", "LSO", "LESOTHO", "ЛЕСОТО":
+		return LSO
+	case "LR", "LBR", "LIBERIA", "ЛИБЕРИЯ", "ЛІБЕРІЯ":
+		return LBR
+	case "LB", "LBN", "LEBANON", "RL", "LIBANON", "ЛИВАН", "ЛІВАН":
+		return LBN
+	case "LY", "LBY", "LBA", "LIBYA", "LIVIA", "LIVIYA", "LIBYAN", "LIBYANARABJAMAHIRIYA", "LF", "LIBYEN", "ЛИВИЯ", "ЛІВІЯ":
+		return LBY
+	case "LT", "LTU", "LITHUANIA", "LITAUEN", "LITVA", "ЛИТВА":
+		return LTU
 	case "LI", "LIE", "LIECHTENSTEIN", "LIEHTENSTEIN", "FL", "ЛИХТЕНШТЕЙН", "ЛІХТЕНШТЕЙН":
-    return LIE
-case "LU", "LUX", "LUXEMBOURG", "LUXEMBURG", "ЛЮКСЕМБУРГ", "ЛЮКСЕМБУРГ":
-    return LUX
-case "MU", "MUS", "MAURITIUS", "МАВРИКИЙ", "МАВРИКІЙ":
-    return MUS
-case "MR", "MRT", "MAURITANIA", "MAURETANIEN", "МАВРИТАНИЯ", "МАВРИТАНІЯ":
-    return MRT
-case "MG", "MDG", "MADAGASCAR", "RM", "MADAGASKAR", "МАДАГАСКАР", "МАДАГАСКАР":
-    return MDG
-case "YT", "MYT", "MAYOTTE", "МАЙОТТА", "МАЙОТТА":
-    return MYT
-case "MO", "MAC", "MACAUCHINA", "MACAU", "MACAO", "MACAUSAR", "MACAOSAR", "МАКАО", "МАКАО":
-    return MAC
-case "MK", "MKD", "MACEDONIA", "MACEDONIAFYRO", "MACEDONIATHEFORMERYUGOSLAVREPUBLICOF", "MACEDONIATHEFORMERYUGOSLAV", "MACEDONIATHEFORMERYUGOSLAVREPUBLIC", "REPUBLICOFNORTHMACEDONIA", "REPUBLICOFMACEDONIA", "NORTHMACEDONIA", "MACEDONIANORTH", "NORDMAZEDONIEN", "THEFORMERYUGOSLAVREPUBLICOF", "THEFORMERYUGOSLAVREPUBLIC", "FORMERYUGOSLAVREPUBLICOF", "FORMERYUGOSLAVREPUBLIC", "MACEDONIAFORMERYUGOSLAVREPUBLICOF", "MACEDONIAFORMERYUGOSLAVREPUBLIC", "YUGOSLAVREPUBLIC", "СЕВЕРНАЯ МАКЕДОНИЯ", "ПІВНІЧНА МАКЕДОНІЯ":
-    return MKD
-case "MW", "MWI", "MAW", "MALAWI", "MALAVI", "МАЛАВИ", "МАЛАВІ":
-    return MWI
-case "MY", "MYS", "MAL", "MALAYSIA", "MALAYSIYA", "МАЛАЙЗИЯ", "МАЛАЙЗІЯ":
-    return MYS
-case "ML", "MLI", "RMM", "MALI", "МАЛИ", "МАЛІ":
-    return MLI
-case "MV", "MDV", "MALDIVES", "MALEDIVEN", "МАЛЬДИВЫ", "МАЛЬДІВИ":
-    return MDV
-case "MT", "MLT", "MALTA", "МАЛЬТА", "МАЛЬТА":
-    return MLT
-case "MP", "MNP", "NORTHERNMARIANAISLANDS", "NORTHERNMARIANAIS", "MARIANAISLANDS", "NÖRDLICHEMARIANEN", "NOERDLICHEMARIANEN", "СЕВЕРНЫЕ МАРИАНСКИЕ ОСТРОВА", "ПІВНІЧНІ МАРІАНСЬКІ ОСТРОВИ":
-    return MNP
-case "MA", "MAR", "MOROCCO", "MOROCO", "MOROKO", "MAROKKO", "МАРОККО", "МАРОККО":
-    return MAR
-case "MQ", "MTQ", "MARTINIQUE", "МАРТИНИКА", "МАРТИНІКА":
-    return MTQ
-case "MH", "MHL", "MARSHALLISLANDS", "MARSHALL", "REPUBLICOFTHEMARSHALLISLANDS", "MARSHALLINSELN", "МАРШАЛЛОВЫ ОСТРОВА", "МАРШАЛЛОВІ ОСТРОВИ":
-    return MHL
-case "MX", "MEX", "MEXICO", "MEXIKO", "МЕКСИКА", "МЕКСИКА":
-    return MEX
-case "FM", "FSM", "MICRONESIA", "MICRONESIAFEDERATEDSTATESOF", "MICRONESIAFEDST", "MIKRONESIEN", "FEDERATEDSTATESOFMICRONESIA", "STATESOFMICRONESIA", "FEDERATEDSTATESMICRONESIA", "STATESMICRONESIA", "МИКРОНЕЗИЯ", "МІКРОНЕЗІЯ":
-    return FSM
-case "MZ", "MOZ", "MOZAMBIQUE", "MOZAMBIQ", "MOSAMBIK", "МОЗАМБИК", "МОЗАМБІК":
-    return MOZ
-case "MD", "MDA", "MOLDOVA", "MOLDAVIA", "MOLDAVIAN", "MOLDAVIYA", "REPUBLIKMOLDOVA", "REPUBLICOFMOLDOVA", "MOLDOVAREPUBLICOF", "MOLDOVAREPUBLIC", "МОЛДОВА", "МОЛДОВА":
-    return MDA
-case "MC", "MCO", "MONACO", "MONAKO", "МОНАКО", "МОНАКО":
-    return MCO
-case "MN", "MNG", "MONGOLIA", "MONGOLIAN", "MONGOLIYA", "MONGOLEI", "МОНГОЛИЯ", "МОНГОЛІЯ":
-    return MNG
-case "MS", "MSR", "MONTSERRAT", "МОНТСЕРРАТ", "МОНТСЕРРАТ":
-    return MSR
-case "MM", "BU", "MMR", "BUMM", "MYANMAR", "BURMA", "МЬЯНМА", "БІРМА":
-    return MMR
-case "NA", "NAM", "NAMIBIA", "NAMIBIAN", "NAMIBIYA", "NAMIBIE", "НАМИБИЯ", "НАМІБІЯ":
-    return NAM
-case "NR", "NRU", "NAURU", "НАУРУ", "НАУРУ":
-    return NRU
-case "NP", "NPL", "NEPAL", "NEPALI", "НЕПАЛ", "НЕПАЛ":
-    return NPL
-case "NE", "NER", "NIGER", "NIGGER", "RN", "НИГЕР", "НІГЕР":
-    return NER
-case "NG", "NGA", "NGR", "WAN", "NIGERIA", "NIGERIAN", "NIGGERIAN", "NIGERIYA", "NIGGERIA", "NIGGERIYA", "НИГЕРИЯ", "НІГЕРІЯ":
-    return NGA
-case "NL", "NLD", "NED", "NETHERLANDS", "NETHERLAND", "HOLLAND", "HOLLANDIA", "HOLLANDIYA", "NIEDERLANDE", "HOLAND", "HOLANDIA", "HOLANDIYA", "НИДЕРЛАНДЫ", "НІДЕРЛАНДИ":
-    return NLD
-case "NI", "NIC", "NICARAGUA", "НИКАРАГУА", "НІКАРАГУА":
-    return NIC
-case "NU", "NIU", "NIUE", "НИУЭ", "НІУЕ":
-    return NIU
-case "NZ", "NZL", "NEWZEALAND", "NEWZELANDIA", "NEWZELAND", "NEUSEELAND", "НОВАЯ ЗЕЛАНДИЯ", "НОВА ЗЕЛАНДІЯ":
-    return NZL
-	
-	case "NC", "NCL", "NEWCALEDONIA", "NEWCALEDONIYA", "NEUKALEDONIEN", "НОВАЯ КАЛЕДОНИЯ", "НОВА КАЛЕДОНІЯ":
-    return NCL
-case "NO", "NOR", "NORWAY", "NORWEGEN", "НОРВЕГИЯ", "НОРВЕГІЯ":
-    return NOR
-case "OM", "OMN", "OMAN", "ОМАН", "ОМАН":
-    return OMN
-case "BV", "BVT", "BOUVET", "BOUVETE", "BOUVETISLAND", "ISLANDOFBOUVET", "BOUVETINSEL", "ОСТРОВ БУВЕ", "ОСТРІВ БУВЕ":
-    return BVT
-case "IM", "IMN", "GBM", "ISLEOFMAN", "ОСТРОВ МЭН", "ОСТРІВ МЕН":
-    return IMN
-case "NF", "NFK", "NORFOLKISLAND", "NORFOLK", "NORFOLCISLAND", "NORFOLC", "NORFOLKINSEL", "ОСТРОВ НОРФОЛК", "ОСТРІВ НОРФОЛК":
-    return NFK
-case "PN", "PCN", "PITCAIRN", "THEPITCAIRN", "PITCAIRNISLANDS", "THEPITCAIRNISLANDS", "DUCIEANDOENOISLANDS", "DUCIEANDOENO", "PITCAIRNINSELN", "ОСТРОВА ПИТКЕРН", "ОСТРОВИ ПІТКЕРН":
-    return PCN
-case "CX", "CXR", "CHRISTMASISLAND", "TERRITORYOFCHRISTMASISLAND", "WEIHNACHTSINSEL", "ОСТРОВ РОЖДЕСТВА", "ОСТРІВ РІЗДВА":
-    return CXR
-case "SH", "TA", "SHN", "TAA", "ASC", "SAINTHELENA", "SAINTELENA", "STHELENA", "STELENA", "TRISTAN", "ASCENSIONANDTRISTANDACUNHA", "ASCENSIONTRISTANDACUNHA", "TRISTANDACUNHA", "SANKTHELENA", "СВЯТАЯ ЕЛЕНА", "СВЯТА ЄЛЕНА":
-    return SHN
-case "WF", "WLF", "WALLISANDFUTUNAISLANDS", "WALLISFUTUNAISLANDS", "WALLISANDFUTUNA", "WALLISFUTUNA", "WALLISUNDFUTUNA", "УОЛЛИС И ФУТУНА", "УОЛЛІС І ФУТУНА":
-    return WLF
-case "HM", "HMD", "HEARDISLANDANDMCDONALDISLANDS", "HEARDISLAND", "HEARDUNDMCDONALDINSELN", "HEARDANDMCDONALDISLANDS", "ОСТРОВ ХЕРД И ОСТРОВА МАКДОНАЛЬД", "ОСТРІВ ХЕРД І ОСТРОВИ МАКДОНАЛЬД":
-    return HMD
-case "CV", "CPV", "CAPEVERDE", "KAPVERDE", "CABOVERDE", "ОСТРОВА ЗЕЛЕНОГО МЫСА", "ОСТРОВИ ЗЕЛЕНОГО МИСУ":
-    return CPV
-case "CK", "COK", "COOKISLANDS", "COOKINSELN", "ОСТРОВА КУКА", "ОСТРОВИ КУКА":
-    return COK
-case "WS", "WSM", "SAMOA", "САМОА", "САМОА":
-    return WSM
-case "SJ", "SJM", "SVALBARDANDJANMAYENISLANDS", "SVALBARD", "SVALBARDUNDJANMAYEN", "SVALBARDANDJANMAYEN", "ШПИЦБЕРГЕН И ЯН-МАЙЕН", "ШПІЦБЕРГЕН І ЯН-МАЙЕН":
-    return SJM
-case "TC", "TCA", "TURKSANDCAICOSISLANDS", "TURKSANDCAICOSIS", "CAICOSISLANDS", "CACOSISLANDS", "TURKSUNDCACIOINSELN", "ОСТРОВА ТЕРКС И КАЙКОС", "ОСТРОВИ ТЕРКС І КАЙКОС":
-    return TCA
-case "UM", "UMI", "UNITEDSTATESMINOROUTLYINGISLANDS", "MINOROUTLYINGISLANDS", "MINOROUTLYING", "USMI", "JT", "JTN", "JTUM", "MI", "MID", "MIUM", "PU", "PUS", "PUUM", "WK", "WAK", "WKUM", "KLEINEINSELBESITZUNGENDERVEREINIGTENSTAATEN", "USOUTLYINGISLANDS", "МАЛЫЕ ВНЕШНИЕ ОСТРОВА США", "МАЛІ ВІДАЛЕНІ ОСТРОВИ США":
-    return UMI
-case "PK", "PAK", "PAKISTAN", "PACISTAN", "ПАКИСТАН", "ПАКИСТАН":
-    return PAK
-case "PW", "PLW", "PALAU", "ПАЛАУ", "ПАЛАУ":
-    return PLW
-case "PS", "PSE", "PLE", "PALESTINE", "PALESTINA", "PALESTINIAN", "PALESTINIANTERRITORY", "PALÄSTINA", "PALAESTINA", "OCCUPIEDPALESTINIANTERRITORY", "ПАЛЕСТИНА", "ПАЛЕСТИНА":
-    return PSE
-case "PA", "PAN", "PCZ", "PANAMA", "PANAMIAN", "PANAM", "PZ", "PZPA", "ПАНАМА", "ПАНАМА":
-    return PAN
-case "PG", "PNG", "PAPUANEWGUINEA", "PAPUA", "PAPUANEUGUINEA", "NEWGUINEA", "NEUGUINEA", "ПАПУА-НОВАЯ ГВИНЕЯ", "ПАПУА-НОВА ГВІНЕЯ":
-    return PNG
-case "PY", "PRY", "PARAGUAY", "ПАРАГВАЙ", "ПАРАГВАЙ":
-    return PRY
-case "PE", "PER", "PERU", "ПЕРУ", "ПЕРУ":
-    return PER
-case "PL", "POL", "POLAND", "POLSKI", "POLSHA", "POLEN", "ПОЛЬША", "ПОЛЬЩА":
-    return POL
-case "PT", "PRT", "PORTUGAL", "PORTUGALIAN", "PORTUGALIYA", "ПОРТУГАЛИЯ", "ПОРТУГАЛІЯ":
-    return PRT
-case "PR", "PRI", "PUERTORICO", "PUERTORIKO", "ПУЭРТО-РИКО", "ПУЕРТО-РИКО":
-    return PRI
-case "RE", "REU", "REUNION", "RÉUNION", "РЕЮНЬОН", "РЕЮНЬЙОН":
-    return REU
-case "RU", "RUS", "SUN", "RUSSIA", "RUSSO", "RUSSISH", "RUSSLAND", "RUSLAND", "RUSIA", "ROSSIA", "ROSSIYA", "RUSSIAN", "RUSSIANFEDERATION", "USSR", "РОССИЯ", "РОСІЯ":
-    return RUS
-case "RW", "RWA", "RWANDA", "RUANDA", "RUWANDA", "РУАНДА", "РУАНДА":
-    return RWA
-case "RO", "ROU", "ROM", "ROMANIA", "RUMINIA", "RUMINIYA", "RUMÄNIEN", "RUMAENIEN", "РУМЫНИЯ", "РУМУНІЯ":
-    return ROU
-case "SV", "SLV", "ESA", "ELSALVADOR", "САЛЬВАДОР", "САЛЬВАДОР":
-    return SLV
-case "SM", "SMR", "RSM", "SANMARINO", "САН-МАРИНО", "САН-МАРИНО":
-    return SMR
-case "ST", "STP", "SAOTOMEANDPRINCIPE", "SAOTOME", "SAOTOMEUNDPRINCIPE", "SÃOTOMÉANDPRÍNCIPE", "САН-ТОМЕ И ПРИНСИПИ", "САН-ТОМЕ І ПРІНСІПІ":
-    return STP
-case "SA", "SAU", "SAUDIARABIA", "SAUDI", "SAUDIARABIEN", "САУДОВСКАЯ АРАВИЯ", "САУДІВСЬКА АРАВІЯ":
-    return SAU
-	
+		return LIE
+	case "LU", "LUX", "LUXEMBOURG", "LUXEMBURG", "ЛЮКСЕМБУРГ":
+		return LUX
+	case "MU", "MUS", "MAURITIUS", "МАВРИКИЙ", "МАВРИКІЙ":
+		return MUS
+	case "MR", "MRT", "MAURITANIA", "MAURETANIEN", "МАВРИТАНИЯ", "МАВРИТАНІЯ":
+		return MRT
+	case "MG", "MDG", "MADAGASCAR", "RM", "MADAGASKAR", "МАДАГАСКАР":
+		return MDG
+	case "YT", "MYT", "MAYOTTE", "МАЙОТТА":
+		return MYT
+	case "MO", "MAC", "MACAUCHINA", "MACAU", "MACAO", "MACAUSAR", "MACAOSAR", "МАКАО":
+		return MAC
+	case "MK", "MKD", "MACEDONIA", "MACEDONIAFYRO", "MACEDONIATHEFORMERYUGOSLAVREPUBLICOF", "MACEDONIATHEFORMERYUGOSLAV", "MACEDONIATHEFORMERYUGOSLAVREPUBLIC", "REPUBLICOFNORTHMACEDONIA", "REPUBLICOFMACEDONIA", "NORTHMACEDONIA", "MACEDONIANORTH", "NORDMAZEDONIEN", "THEFORMERYUGOSLAVREPUBLICOF", "THEFORMERYUGOSLAVREPUBLIC", "FORMERYUGOSLAVREPUBLICOF", "FORMERYUGOSLAVREPUBLIC", "MACEDONIAFORMERYUGOSLAVREPUBLICOF", "MACEDONIAFORMERYUGOSLAVREPUBLIC", "YUGOSLAVREPUBLIC", "СЕВЕРНАЯМАКЕДОНИЯ", "ПІВНІЧНАМАКЕДОНІЯ":
+		return MKD
+	case "MW", "MWI", "MAW", "MALAWI", "MALAVI", "МАЛАВИ", "МАЛАВІ":
+		return MWI
+	case "MY", "MYS", "MAL", "MALAYSIA", "MALAYSIYA", "МАЛАЙЗИЯ", "МАЛАЙЗІЯ":
+		return MYS
+	case "ML", "MLI", "RMM", "MALI", "МАЛИ", "МАЛІ":
+		return MLI
+	case "MV", "MDV", "MALDIVES", "MALEDIVEN", "МАЛЬДИВЫ", "МАЛЬДІВИ":
+		return MDV
+	case "MT", "MLT", "MALTA", "МАЛЬТА":
+		return MLT
+	case "MP", "MNP", "NORTHERNMARIANAISLANDS", "NORTHERNMARIANAIS", "MARIANAISLANDS", "NÖRDLICHEMARIANEN", "NOERDLICHEMARIANEN", "СЕВЕРНЫЕМАРИАНСКИЕОСТРОВА", "ПІВНІЧНІМАРІАНСЬКІОСТРОВИ":
+		return MNP
+	case "MA", "MAR", "MOROCCO", "MOROCO", "MOROKO", "MAROKKO", "МАРОККО":
+		return MAR
+	case "MQ", "MTQ", "MARTINIQUE", "МАРТИНИКА", "МАРТИНІКА":
+		return MTQ
+	case "MH", "MHL", "MARSHALLISLANDS", "MARSHALL", "REPUBLICOFTHEMARSHALLISLANDS", "MARSHALLINSELN", "МАРШАЛЛОВЫОСТРОВА", "МАРШАЛЛОВІОСТРОВИ":
+		return MHL
+	case "MX", "MEX", "MEXICO", "MEXIKO", "МЕКСИКА":
+		return MEX
+	case "FM", "FSM", "MICRONESIA", "MICRONESIAFEDERATEDSTATESOF", "MICRONESIAFEDST", "MIKRONESIEN", "FEDERATEDSTATESOFMICRONESIA", "STATESOFMICRONESIA", "FEDERATEDSTATESMICRONESIA", "STATESMICRONESIA", "МИКРОНЕЗИЯ", "МІКРОНЕЗІЯ":
+		return FSM
+	case "MZ", "MOZ", "MOZAMBIQUE", "MOZAMBIQ", "MOSAMBIK", "МОЗАМБИК", "МОЗАМБІК":
+		return MOZ
+	case "MD", "MDA", "MOLDOVA", "MOLDAVIA", "MOLDAVIAN", "MOLDAVIYA", "REPUBLIKMOLDOVA", "REPUBLICOFMOLDOVA", "MOLDOVAREPUBLICOF", "MOLDOVAREPUBLIC", "МОЛДОВА":
+		return MDA
+	case "MC", "MCO", "MONACO", "MONAKO", "МОНАКО":
+		return MCO
+	case "MN", "MNG", "MONGOLIA", "MONGOLIAN", "MONGOLIYA", "MONGOLEI", "МОНГОЛИЯ", "МОНГОЛІЯ":
+		return MNG
+	case "MS", "MSR", "MONTSERRAT", "МОНТСЕРРАТ":
+		return MSR
+	case "MM", "BU", "MMR", "BUMM", "MYANMAR", "BURMA", "МЬЯНМА", "БІРМА":
+		return MMR
+	case "NA", "NAM", "NAMIBIA", "NAMIBIAN", "NAMIBIYA", "NAMIBIE", "НАМИБИЯ", "НАМІБІЯ":
+		return NAM
+	case "NR", "NRU", "NAURU", "НАУРУ":
+		return NRU
+	case "NP", "NPL", "NEPAL", "NEPALI", "НЕПАЛ":
+		return NPL
+	case "NE", "NER", "NIGER", "NIGGER", "RN", "НИГЕР", "НІГЕР":
+		return NER
+	case "NG", "NGA", "NGR", "WAN", "NIGERIA", "NIGERIAN", "NIGGERIAN", "NIGERIYA", "NIGGERIA", "NIGGERIYA", "НИГЕРИЯ", "НІГЕРІЯ":
+		return NGA
+	case "NL", "NLD", "NED", "NETHERLANDS", "NETHERLAND", "HOLLAND", "HOLLANDIA", "HOLLANDIYA", "NIEDERLANDE", "HOLAND", "HOLANDIA", "HOLANDIYA", "НИДЕРЛАНДЫ", "НІДЕРЛАНДИ":
+		return NLD
+	case "NI", "NIC", "NICARAGUA", "НИКАРАГУА", "НІКАРАГУА":
+		return NIC
+	case "NU", "NIU", "NIUE", "НИУЭ", "НІУЕ":
+		return NIU
+	case "NZ", "NZL", "NEWZEALAND", "NEWZELANDIA", "NEWZELAND", "NEUSEELAND", "НОВАЯ ЗЕЛАНДИЯ", "НОВА ЗЕЛАНДІЯ":
+		return NZL
+	case "NC", "NCL", "NEWCALEDONIA", "NEWCALEDONIYA", "NEUKALEDONIEN", "НОВАЯКАЛЕДОНИЯ", "НОВАКАЛЕДОНІЯ":
+		return NCL
+	case "NO", "NOR", "NORWAY", "NORWEGEN", "НОРВЕГИЯ", "НОРВЕГІЯ":
+		return NOR
+	case "OM", "OMN", "OMAN", "ОМАН":
+		return OMN
+	case "BV", "BVT", "BOUVET", "BOUVETE", "BOUVETISLAND", "ISLANDOFBOUVET", "BOUVETINSEL", "ОСТРОВБУВЕ", "ОСТРІВБУВЕ":
+		return BVT
+	case "IM", "IMN", "GBM", "ISLEOFMAN", "ОСТРОВМЭН", "ОСТРІВМЕН":
+		return IMN
+	case "NF", "NFK", "NORFOLKISLAND", "NORFOLK", "NORFOLCISLAND", "NORFOLC", "NORFOLKINSEL", "ОСТРОВНОРФОЛК", "ОСТРІВНОРФОЛК":
+		return NFK
+	case "PN", "PCN", "PITCAIRN", "THEPITCAIRN", "PITCAIRNISLANDS", "THEPITCAIRNISLANDS", "DUCIEANDOENOISLANDS", "DUCIEANDOENO", "PITCAIRNINSELN", "ОСТРОВАПИТКЕРН", "ОСТРОВИПІТКЕРН":
+		return PCN
+	case "CX", "CXR", "CHRISTMASISLAND", "TERRITORYOFCHRISTMASISLAND", "WEIHNACHTSINSEL", "ОСТРОВРОЖДЕСТВА", "ОСТРІВРІЗДВА":
+		return CXR
+	case "SH", "TA", "SHN", "TAA", "ASC", "SAINTHELENA", "SAINTELENA", "STHELENA", "STELENA", "TRISTAN", "ASCENSIONANDTRISTANDACUNHA", "ASCENSIONTRISTANDACUNHA", "TRISTANDACUNHA", "SANKTHELENA", "СВЯТАЯЕЛЕНА", "СВЯТАЄЛЕНА":
+		return SHN
+	case "WF", "WLF", "WALLISANDFUTUNAISLANDS", "WALLISFUTUNAISLANDS", "WALLISANDFUTUNA", "WALLISFUTUNA", "WALLISUNDFUTUNA", "УОЛЛИСИФУТУНА", "УОЛЛІСІФУТУНА":
+		return WLF
+	case "HM", "HMD", "HEARDISLANDANDMCDONALDISLANDS", "HEARDISLAND", "HEARDUNDMCDONALDINSELN", "HEARDANDMCDONALDISLANDS", "ОСТРОВХЕРДИОСТРОВАМАКДОНАЛЬД", "ОСТРІВХЕРДІОСТРОВИМАКДОНАЛЬД":
+		return HMD
+	case "CV", "CPV", "CAPEVERDE", "KAPVERDE", "CABOVERDE", "ОСТРОВАЗЕЛЕНОГОМЫСА", "ОСТРОВИЗЕЛЕНОГОМИСУ":
+		return CPV
+	case "CK", "COK", "COOKISLANDS", "COOKINSELN", "ОСТРОВАКУКА", "ОСТРОВИКУКА":
+		return COK
+	case "WS", "WSM", "SAMOA", "САМОА":
+		return WSM
+	case "SJ", "SJM", "SVALBARDANDJANMAYENISLANDS", "SVALBARD", "SVALBARDUNDJANMAYEN", "SVALBARDANDJANMAYEN", "ШПИЦБЕРГЕНИЯНМАЙЕН", "ШПІЦБЕРГЕНІЯНМАЙЕН":
+		return SJM
+	case "TC", "TCA", "TURKSANDCAICOSISLANDS", "TURKSANDCAICOSIS", "CAICOSISLANDS", "CACOSISLANDS", "TURKSUNDCACIOINSELN", "ОСТРОВАТЕРКСИКАЙКОС", "ОСТРОВИТЕРКСІКАЙКОС":
+		return TCA
+	case "UM", "UMI", "UNITEDSTATESMINOROUTLYINGISLANDS", "MINOROUTLYINGISLANDS", "MINOROUTLYING", "USMI", "JT", "JTN", "JTUM", "MI", "MID", "MIUM", "PU", "PUS", "PUUM", "WK", "WAK", "WKUM", "KLEINEINSELBESITZUNGENDERVEREINIGTENSTAATEN", "USOUTLYINGISLANDS", "МАЛЫЕВНЕШНИЕОСТРОВАСША", "МАЛІВІДАЛЕНІОСТРОВИСША":
+		return UMI
+	case "PK", "PAK", "PAKISTAN", "PACISTAN", "ПАКИСТАН":
+		return PAK
+	case "PW", "PLW", "PALAU", "ПАЛАУ":
+		return PLW
+	case "PS", "PSE", "PLE", "PALESTINE", "PALESTINA", "PALESTINIAN", "PALESTINIANTERRITORY", "PALÄSTINA", "PALAESTINA", "OCCUPIEDPALESTINIANTERRITORY", "ПАЛЕСТИНА":
+		return PSE
+	case "PA", "PAN", "PCZ", "PANAMA", "PANAMIAN", "PANAM", "PZ", "PZPA", "ПАНАМА":
+		return PAN
+	case "PG", "PNG", "PAPUANEWGUINEA", "PAPUA", "PAPUANEUGUINEA", "NEWGUINEA", "NEUGUINEA", "ПАПУАНОВАЯГВИНЕЯ", "ПАПУАНОВАГВІНЕЯ":
+		return PNG
+	case "PY", "PRY", "PARAGUAY", "ПАРАГВАЙ":
+		return PRY
+	case "PE", "PER", "PERU", "ПЕРУ":
+		return PER
+	case "PL", "POL", "POLAND", "POLSKI", "POLSHA", "POLEN", "ПОЛЬША", "ПОЛЬЩА":
+		return POL
+	case "PT", "PRT", "PORTUGAL", "PORTUGALIAN", "PORTUGALIYA", "ПОРТУГАЛИЯ", "ПОРТУГАЛІЯ":
+		return PRT
+	case "PR", "PRI", "PUERTORICO", "PUERTORIKO", "ПУЭРТОРИКО", "ПУЕРТОРИКО":
+		return PRI
+	case "RE", "REU", "REUNION", "RÉUNION", "РЕЮНЬОН", "РЕЮНЬЙОН":
+		return REU
+	case "RU", "RUS", "SUN", "RUSSIA", "RUSSO", "RUSSISH", "RUSSLAND", "RUSLAND", "RUSIA", "ROSSIA", "ROSSIYA", "RUSSIAN", "RUSSIANFEDERATION", "USSR", "РОССИЯ", "РОСІЯ", "РОСІЙСЬКАФЕДЕРАЦІЯ":
+		return RUS
+	case "RW", "RWA", "RWANDA", "RUANDA", "RUWANDA", "РУАНДА":
+		return RWA
+	case "RO", "ROU", "ROM", "ROMANIA", "RUMINIA", "RUMINIYA", "RUMÄNIEN", "RUMAENIEN", "РУМЫНИЯ", "РУМУНІЯ":
+		return ROU
+	case "SV", "SLV", "ESA", "ELSALVADOR", "САЛЬВАДОР":
+		return SLV
+	case "SM", "SMR", "RSM", "SANMARINO", "САН-МАРИНО":
+		return SMR
+	case "ST", "STP", "SAOTOMEANDPRINCIPE", "SAOTOME", "SAOTOMEUNDPRINCIPE", "SÃOTOMÉANDPRÍNCIPE", "САНТОМЕИПРИНСИПИ", "САНТОМЕІПРІНСІПІ":
+		return STP
+	case "SA", "SAU", "SAUDIARABIA", "SAUDI", "SAUDIARABIEN", "САУДОВСКАЯАРАВИЯ", "САУДІВСЬКААРАВІЯ":
+		return SAU
+
 	case "SZ", "SWZ", "SWAZILAND", "SWASILAND", "ESWATINI", "KINGDOMOFESWATINI", "KINGDOMESWATINI", "SVAZILEND", "СВАЗИЛЕНД", "СВАЗІЛЕНД":
-    return SWZ
-case "SC", "SYC", "SEYCHELLES", "SEYCHELLEN", "СЕЙШЕЛЫ", "СЕЙШЕЛИ":
-    return SYC
-case "SN", "SEN", "SENEGAL", "СЕНЕГАЛ", "СЕНЕГАЛ":
-    return SEN
-case "PM", "SPM", "SAINTPIERREANDMIQUELON", "SAINTPIERRE", "STPIERREANDMIQUELON", "STPIERRE", "SANKTPIERRE", "SANKTPIERREUNDMIQUELON", "СЕН-ПЬЕР И МИКЕЛОН", "СЕН-П'ЄР І МІКЕЛОН":
-    return SPM
-case "VC", "VCT", "SAINTVINCENTANDTHEGRENADINES", "SAINTVINCENT", "STVINCENTANDTHEGRENADINES", "STVINCENT", "WV", "STVINCENTUNDDIEGRENADINEN", "STVINCENTANDGRENADINES", "СЕНТ-ВИНСЕНТ И ГРЕНАДИНЫ", "СЕНТ-ВІНСЕНТ І ГРЕНАДИНИ":
-    return VCT
-case "KN", "KNA", "SAINTKITTSANDNEVIS", "SAINTKITTSNEVIS", "SAINTKITTS", "STKITTSANDNEVIS", "STKITTSNEVIS", "STKITTS", "SANKTKITTSUNDNEVIS", "СЕНТ-КИТС И НЕВИС", "СЕНТ-КІТС І НЕВІС":
-    return KNA
-case "LC", "LCA", "SAINTLUCIA", "STLUCIA", "LUCIA", "WL", "СЕНТ-ЛЮСИЯ", "СЕНТ-ЛЮСІЯ":
-    return LCA
-case "SG", "SGP", "SINGAPORE", "SINGPAORE", "SINGAPORECITY", "SINGAPOUR", "SINGAPURA", "SINGAPUR", "СИНГАПУР", "СІНГАПУР":
-    return SGP
-case "SY", "SYR", "SYRIA", "SYRIAN", "SYRIANARABREPUBLIC", "SYRIEN", "СИРИЯ", "СИРІЯ":
-    return SYR
-case "SK", "SVK", "CSHH", "SLOVAKIA", "SLOVAK", "SLOVAKIYA", "SLOVACIA", "SLOVAC", "SLOVACIYA", "SLOWAKEI", "СЛОВАКИЯ", "СЛОВАЧЧИНА":
-    return SVK
-case "SI", "SVN", "SLO", "SLOVENIA", "SLOVENIYA", "SLOWENIEN", "СЛОВЕНИЯ", "СЛОВЕНІЯ":
-    return SVN
-case "US", "USA", "UNITEDSTATES", "UNITEDSTATESOFAMERICA", "USOFAMERICA", "USAMERICA", "VEREINIGTESTAATENVONAMERIKA", "СОЕДИНЕННЫЕ ШТАТЫ", "СПОЛУЧЕНІ ШТАТИ":
-    return USA
-case "SB", "SLB", "SOLOMONISLANDS", "SOLOMON", "SALOMONEN", "СОЛОМОНОВЫ ОСТРОВА", "СОЛОМОНІВ ОСТРОВИ":
-    return SLB
-case "SO", "SOM", "SOMALIA", "SOMALI", "СОМАЛИ", "СОМАЛІ":
-    return SOM
-case "SD", "SDN", "SUDAN", "SUDANE", "UMHŪRIYYATASSŪDĀN", "SŪDĀN", "جمهوريةالسودان", "السودان", "СУДАН", "СУДАН":
-    return SDN
-case "SR", "SUR", "SME", "SURINAME", "SURINAM", "СУРИНАМ", "СУРІНАМ":
-    return SUR
-case "SL", "SLE", "WAL", "SIERRALEONE", "SIERRALEON", "SIERALEONE", "SIERALEON", "СЬЕРРА-ЛЕОНЕ", "СЬЄРРА-ЛЕОНЕ":
-    return SLE
-case "TJ", "TJK", "TAJIKISTAN", "TADJIKISTAN", "TADSCHIKISTAN", "ТАДЖИКИСТАН", "ТАДЖИКІСТАН":
-    return TJK
-case "TW", "TWN", "TPE", "TAIWAN", "TAIWANIAN", "PROVINCEOFCHINA", "PROVINCECHINA", "ТАЙВАНЬ", "ТАЙВАНЬ":
-    return TWN
-case "TH", "THA", "THAILAND", "TAILAND", "THAI", "THAYLAND", "TAYLAND", "ТАЙЛАНД", "ТАЇЛАНД":
-    return THA
-case "TZ", "TZA", "EAT", "EAZ", "TANZANIA", "TANZANIYA", "TANSANIA", "TANZANIAUNITEDREPUBLICOF", "TANZANIAUNITEDREPUBLIC", "REPUBLICOFTANZANIA", "TANZANIAREPUBLIC", "ТАНЗАНИЯ", "ТАНЗАНІЯ":
-    return TZA
-case "TG", "TGO", "TOGO", "ТОГО", "ТОГО":
-    return TGO
-case "TK", "TKL", "TOKELAU", "ТОКЕЛАУ", "ТОКЕЛАУ":
-    return TKL
-case "TO", "TON", "TONGA", "ТОНГА", "ТОНГА":
-    return TON
-case "TT", "TTO", "TRINIDADANDTOBAGO", "TRINIDAD", "TRINADUNDTOBAGO", "ТРИНИДАД И ТОБАГО", "ТРИНІДАД І ТОБАГО":
-    return TTO
-case "TV", "TUV", "TUVALU", "ТУВАЛУ", "ТУВАЛУ":
-    return TUV
-case "TN", "TUN", "TUNISIA", "TUNESIEN", "ТУНИС", "ТУНІС":
-    return TUN
-case "TM", "TKM", "TMN", "TURKMENISTAN", "TURKMENISTON", "TURKMENI", "TURKMENIA", "TURKMENIYA", "ТУРКМЕНИСТАН", "ТУРКМЕНІСТАН":
-    return TKM
-case "TR", "TUR", "TURKEY", "TURCIA", "TURKISH", "TÜRKEI", "TUERKEI", "TÜRKIYE", "REPUBLICOFTÜRKIYE", "TÜRKIYEREPUBLICOF", "TÜRKIYEREPUBLIC", "REPUBLICTÜRKIYE", "ТУРЦИЯ", "ТУРЕЧЧИНА":
-    return TUR
-case "UG", "UGA", "EAU", "UGANDA", "УГАНДА", "УГАНДА":
-    return UGA
-	
-	case "UZ", "UZB", "UZBEKISTAN", "UZBEKISTON":
-	case "UZB", "UZ", "UZBEKISTAN", "УЗБЕКИСТАН", "УЗБЕКІСТАН":
-    return UZB
-case "UA", "UKR", "UKRAINE", "UKRAINA", "УКРАИНА", "УКРАЇНА": //nolint
-    return UKR
-case "UY", "URY", "URUGUAY", "URUGWAY", "УРУГВАЙ", "УРУГВАЙ":
-    return URY
-case "XW", "XWA", "WALES", "УЭЛЬС", "УЕЛЬС":
-    return XWA
-case "FO", "FRO", "FAROEISLANDS", "FAROE", "FÄRÖER", "FAEROERER", "ФАРЕРСКИЕ ОСТРОВА", "ФАРЕРСЬКІ ОСТРОВИ":
-    return FRO
-case "FJ", "FJI", "FIJI", "FIDSCHI", "ФИДЖИ", "ФІДЖІ":
-    return FJI
-case "PH", "PHL", "PHI", "PHILIPPINES", "PHILIPINES", "PI", "RP", "PHILIPPINEN", "ФИЛИППИНЫ", "ФІЛІПІНИ": //nolint
-    return PHL
-case "FI", "SF", "FIN", "FINLAND", "FINNISH", "FINNLAND", "ФИНЛЯНДИЯ", "ФІНЛЯНДІЯ":
-    return FIN
-case "FK", "FLK", "FALKLANDISLANDSMALVINAS", "MALVINAS", "FALKLANDISLANDS", "FALKLAND", "FALKLANDINSELN", "ФОЛКЛЕНДСКИЕ ОСТРОВА", "ФОЛКЛЕНДСЬКІ ОСТРОВИ":
-    return FLK
-case "FR", "CP", "FX", "FRA", "FXX", "CPT", "FXFR", "FRANCE", "FRENCH", "FRANKREICH", "ФРАНЦИЯ", "ФРАНЦІЯ":
-    return FRA
-case "GF", "GUF", "FRENCHGUIANA", "GUIANA", "FRANZÖSISCHGUYANA", "FRANZOESISCHGUYANA", "ФРАНЦУЗСКАЯ ГВИАНА", "ФРАНЦУЗЬКА ГВІАНА":
-    return GUF
-case "PF", "PYF", "FRENCHPOLYNESIA", "POLYNESIA", "FRANZÖSISCHPOLYNESIEN", "FRANZOESISCHPOLYNESIEN", "ФРАНЦУЗСКАЯ ПОЛИНЕЗИЯ", "ФРАНЦУЗЬКА ПОЛІНЕЗІЯ":
-    return PYF
-case "TF", "ATF", "FRENCHSOUTHERNTERRITORIES", "SOUTHERNTERRITORIESFRENCH", "FRANZÖSISCHESÜDUNDANTARKTISGEBIETE", "FRANZOESISCHESUEDUNDANTARKTISGEBIETE", "ФРАНЦУЗСКИЕ ЮЖНЫЕ И АНТАРКТИЧЕСКИЕ ТЕРРИТОРИИ", "ФРАНЦУЗЬКІ ПІВДЕННІ І АНТАРКТИЧНІ ТЕРИТОРІЇ":
-    return ATF
-case "HR", "HRV", "CRO", "CROATIA", "KROATIA", "KROATIEN", "ХОРВАТИЯ", "ХОРВАТІЯ":
-    return HRV
-case "CF", "CAF", "CTA", "RCA", "CENTRALAFRICANREPUBLIC", "CENTRALAFRICANREP", "CENTRALAFRICAN", "ZENTRALAFRIKA", "ЦЕНТРАЛЬНО-АФРИКАНСКАЯ РЕСПУБЛИКА", "ЦЕНТРАЛЬНО-АФРИКАНСЬКА РЕСПУБЛІКА":
-    return CAF
-case "TD", "TCD", "CHAD", "TSCHAD", "ЧАД", "ЧАД":
-    return TCD
-case "CZ", "CZE", "CZECHIA", "CZECHIYA", "CZECHREPUBLIC", "REPUBLICOFCZECH", "CZECH", "TSCHECHIEN", "CHEHIA", "CHEHIYA", "ЧЕХИЯ", "ЧЕХІЯ":
-    return CZE
-case "CL", "CHL", "RCH", "CHILE", "CHILI", "CHILLE", "ЧИЛИ", "ЧИЛІ":
-    return CHL
-case "CH", "CHE", "SWITZERLAND", "SWISS", "SCHWEIZ", "SUISSE", "SVIZZERA", "SVIZRA", "HELVETIA", "SHVEYCARIA", "SHVEYCARIYA", "ШВЕЙЦАРИЯ", "ШВЕЙЦАРІЯ":
-    return CHE
-case "SE", "SWE", "SWEDEN", "SCHWEDEN", "SHWEDEN", "SHVECIA", "SHVECIYA", "ШВЕЦИЯ", "ШВЕЦІЯ":
-    return SWE
-case "XS", "XSC", "SCOTLAND", "SCHOTTLAND", "ШОТЛАНДИЯ", "ШОТЛАНДІЯ":
-    return XSC
-case "LK", "LKA", "SRILANKA", "ШРИ-ЛАНКА", "ШРІ-ЛАНКА":
-    return LKA
-case "EC", "ECU", "ECUADOR", "ЭКВАДОР", "ЕКВАДОР":
-    return ECU
-case "GQ", "GNQ", "EQG", "GEQ", "EQUATORIALGUINEA", "ÄQUATORIALGUINEA", "AEQUATORIALGUINEA", "ЭКВАТОРИАЛЬНАЯ ГВИНЕЯ", "ЕКВАТОРІАЛЬНА ГВІНЕЯ":
-    return GNQ
-case "ER", "ERI", "ERITREA", "ЭРИТРЕЯ", "ЕРІТРЕЯ":
-    return ERI
-case "EE", "EST", "ESTONIA", "EW", "ESTLAND", "ЭСТОНИЯ", "ЕСТОНІЯ":
-    return EST
-case "ET", "ETH", "ETHIOPIA", "ÄTHOPIEN", "AETHOPIEN", "ЭФИОПИЯ", "ЕТІОПІЯ":
-    return ETH
-case "ZA", "ZAF", "SOUTHAFRICA", "SÜDAFRIKA", "SUEDAFRIKA", "ЮЖНАЯ АФРИКА", "ПІВДЕННА АФРИКА":
-    return ZAF
-case "YU", "YUG", "YUGOSLAVIA", "UGOSLAVIA", "YUGOSLAVIYA", "UGOSLAVIYA", "SERBIAANDMONTENEGRO", "CS", "SCG", "JUGOSLAWIEN", "ЮГОСЛАВИЯ", "ЮГОСЛАВІЯ":
-    return YUG
-case "GS", "SGS", "SOUTHGEORGIAANDTHESOUTHSANDWICHISLANDS", "SOUTHGEORGIAANDTHESOUTHSANDWICH", "SOUTHGEORGIATHESOUTHSWICHISLANDS", "SOUTHGEORGIA", "SÜDGEORGIEN", "SUEDGEORGIEN", "ЮЖНАЯ ДЖОРДЖИЯ И ЮЖНЫЕ САНДВИЧЕВЫ ОСТРОВА", "ПІВДЕННА ДЖОРДЖІЯ І ПІВДЕННІ САНДВІЧЕВІ ОСТРОВИ":
-    return SGS
-case "JM", "JAM", "JAMAICA", "JAMAIKA", "YAMAICA", "YAMAIKA", "JA", "ЯМАЙКА", "ЯМАЙКА":
-    return JAM
-case "ME", "MNE", "MONTENEGRO", "ЧЕРНОГОРИЯ", "ЧОРНОГОРІЯ":
-    return MNE
-case "BL", "BLM", "SAINTBARTHELEMY", "STBARTHELEMY", "SAINTBARTHÉLEMY", "STBARTHÉLEMY", "СЕН-БАРТЕЛЕМИ", "СЕН-БАРТЕЛЕМІ":
-    return BLM
-case "SX", "SXM", "SINTMAARTENDUTCH", "SAINTMAARTEN", "SINTMAARTEN", "STMAARTEN", "СІНТ-МАРТЕН", "СЕН-МАРТЕН":
-    return SXM
-case "RS", "SRB", "CSXX", "SERBIA", "SERBIYA", "SERBIEN", "СЕРБИЯ", "СЕРБІЯ":
-    return SRB
-	
-	case "AX", "ALA", "ALANDISLANDS", "ISLANDSALAND", "ALAND", "ÅLANDISLANDS", "ÅLAND", "ISLANDSÅLAND", "АЛАНДСКИЕ ОСТРОВА", "АЛАНДСЬКІ ОСТРОВИ":
-    return ALA
-case "BQ", "BES", "BONAIRE", "BONAIR", "BONEIRU", "BONAIRESINTEUSTATIUSANDSABA", "BONAIRESINTEUSTATIUSSABA", "BONAIRESTEUSTANDSABA", "BONAIRESTEUSTSABA", "SINTEUSTATIUSANDSABA", "SINTEUSTATIUS", "CARIBBEANNETHERLANDS", "БОНАИР, СИНТ-ЭСТАТИУС И САБА", "БОНАІР, СІНТ-ЕСТАТІУС І САБА":
-    return BES
-case "GG", "GGY", "GBA", "GBG", "GUERNSEY", "ГЕРНСИ", "ГЕРНСІ":
-    return GGY
-case "JE", "JEY", "GBJ", "JERSEY", "JERSIEY", "ДЖЕРСИ", "ДЖЕРСІ":
-    return JEY
-case "CW", "CUW", "CURACAO", "CURAÇAO", "CURAQAO", "CURAKAO", "KURACAO", "KURAKAO", "КЮРАСАО", "КЮРАСАО":
-    return CUW
-case "MF", "MAF", "SAINTMARTINFRENCH", "STMARTINFRENCH", "SANKTMARTIN", "SAINTMARTIN", "СЕН-МАРТЕН", "СЕН-МАРТЕН":
-    return MAF
-case "SS", "SSD", "SOUTHSUDAN", "SOUTHSUDANE", "REPUBLICOFSOUTHSUDAN", "SOUTHSUDANREPUBLICOF", "SOUTHSUDANREPUBLIC", "PAGUOTTHUDÄN", "SÜDSUDAN", "SUEDSUDAN", "ЮЖНЫЙ СУДАН", "ПІВДЕННИЙ СУДАН":
-    return SSD
-case "JP", "JPN", "JAPAN", "ЯПОНИЯ", "ЯПОНІЯ":
-    return JPN
-case "XK", "XKX", "XKS", "KOS", "KOSOVO", "COSOVO", "КОСОВО", "KOSOVËS", "РЕПУБЛИКА КОСОВО", "РЕПУБЛІКА КОСОВО":
-    return XKX
-case "XX", "NONE", "NON", "NICHT", "NICHTS", "НЕТ", "НЕМАЄ":
-    return None
-case "INTERNATIONAL", "МЕЖДУНАРОДНЫЙ", "МІЖНАРОДНИЙ":
-    return International
-case "UIFN", "INTERNATIONALFREEPHONE", "TOLLFREEPHONE", "БЕСПЛАТНЫЙ МЕЖДУНАРОДНЫЙ ТЕЛЕФОН", "БЕЗКОШТОВНИЙ МІЖНАРОДНИЙ ТЕЛЕФОН":
-    return NonCountryInternationalFreephone
-case "INMARSAT", "ИНМАРСАТ", "ІНМАРСАТ":
-    return NonCountryInmarsat
-case "MMS", "MARITIMEMOBILESERVICE", "MARITIMEMOBILESERVICES", "MARITIMEMOBILE", "MARITIME", "МОРСКАЯ МОБИЛЬНАЯ СЛУЖБА", "МОРСЬКА МОБІЛЬНА СЛУЖБА":
-    return NonCountryMaritimeMobileService
-case "UNIVERSALPERSONALTELECOMMUNICATIONSSERVICES", "UNIVERSALPERSONALTELECOMMUNICATIONSSERVICE", "UNIVERSALPERSONALTELECOMMUNICATIONS", "UNIVERSALPERSONALTELECOMMUNICATION", "УНИВЕРСАЛЬНЫЕ ЛИЧНЫЕ ТЕЛЕКОММУНИКАЦИОННЫЕ УСЛУГИ", "УНІВЕРСАЛЬНІ ОСОБИСТІ ТЕЛЕКОМУНІКАЦІЙНІ ПОСЛУГИ":
-    return NonCountryUniversalPersonalTelecommunicationsServices
-case "NCP", "NATIONALNONCOMMERCIALPURPOSES", "NONCOMMERCIALPURPOSES", "NATIONALNONCOMMERCIAL", "NONCOMMERCIAL", "НАЦИОНАЛЬНЫЕ НЕКОММЕРЧЕСКИЕ ЦЕЛИ", "НАЦІОНАЛЬНІ НЕКОМЕРЦІЙНІ ЦІЛІ":
-    return NonCountryNationalNonCommercialPurposes
-case "GMSS", "GLOBALMOBILESATELLITESYSTEM", "GLOBALMOBILESATELITESYSTEM", "GLOBALMOBILESATELLITE", "GLOBALMOBILESATELITE", "ГЛОБАЛЬНАЯ МОБИЛЬНАЯ СПУТНИКОВАЯ СИСТЕМА", "ГЛОБАЛЬНА МОБІЛЬНА СУПУТНИКОВА СИСТЕМА":
-    return NonCountryGlobalMobileSatelliteSystem
-case "INTERNATIONALNETWORKS", "INTERNATIONALNETWORKSSERVICE", "INTERNATIONALNETWORKSSERVICES", "МЕЖДУНАРОДНЫЕ СЕТИ", "МІЖНАРОДНІ МЕРЕЖІ":
-    return NonCountryInternationalNetworks
-case "DISASTERRELIEF", "DISASTER", "ГУМАНИТАРНАЯ ПОМОЩЬ", "ГУМАНІТАРНА ДОПОМОГА":
-    return NonCountryDisasterRelief
-case "IPRS", "INTERNATIONALPREMIUMRATESERVICE", "PREMIUMRATESERVICE", "INTERNATIONALPREMIUMRATESERVICES", "PREMIUMRATESERVICES", "МЕЖДУНАРОДНЫЙ ПРЕМИУМ-СЕРВИС", "МІЖНАРОДНИЙ ПРЕМІУМ-СЕРВІС":
-    return NonCountryInternationalPremiumRateService
-case "ITPCS", "INTERNATIONALTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICETRIAL", "INTERNATIONALTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICE", "InternationalTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICES", "InternationalTELECOMMUNICATIONSCORRESPONDENCESERVICE", "InternationalTELECOMMUNICATIONSCORRESPONDENCESERVICES", "МЕЖДУНАРОДНАЯ ОБЩЕСТВЕННАЯ ТЕЛЕКОММУНИКАЦИОННАЯ СЛУЖБА", "МІЖНАРОДНА ГРОМАДСЬКА ТЕЛЕКОМУНІКАЦІЙНА СЛУЖБА":
-    return NonCountryInternationalTelecommunicationsCorrespondenceService
+		return SWZ
+	case "SC", "SYC", "SEYCHELLES", "SEYCHELLEN", "СЕЙШЕЛЫ", "СЕЙШЕЛИ":
+		return SYC
+	case "SN", "SEN", "SENEGAL", "СЕНЕГАЛ":
+		return SEN
+	case "PM", "SPM", "SAINTPIERREANDMIQUELON", "SAINTPIERRE", "STPIERREANDMIQUELON", "STPIERRE", "SANKTPIERRE", "SANKTPIERREUNDMIQUELON", "СЕНПЬЕРИМИКЕЛОН", "СЕНПЄРІМІКЕЛОН":
+		return SPM
+	case "VC", "VCT", "SAINTVINCENTANDTHEGRENADINES", "SAINTVINCENT", "STVINCENTANDTHEGRENADINES", "STVINCENT", "WV", "STVINCENTUNDDIEGRENADINEN", "STVINCENTANDGRENADINES", "СЕНТВИНСЕНТИГРЕНАДИНЫ", "СЕНТВІНСЕНТІГРЕНАДИНИ":
+		return VCT
+	case "KN", "KNA", "SAINTKITTSANDNEVIS", "SAINTKITTSNEVIS", "SAINTKITTS", "STKITTSANDNEVIS", "STKITTSNEVIS", "STKITTS", "SANKTKITTSUNDNEVIS", "СЕНТКИТСИНЕВИС", "СЕНТКІТСІНЕВІС":
+		return KNA
+	case "LC", "LCA", "SAINTLUCIA", "STLUCIA", "LUCIA", "WL", "СЕНТЛЮСИЯ", "СЕНТЛЮСІЯ":
+		return LCA
+	case "SG", "SGP", "SINGAPORE", "SINGPAORE", "SINGAPORECITY", "SINGAPOUR", "SINGAPURA", "SINGAPUR", "СИНГАПУР", "СІНГАПУР":
+		return SGP
+	case "SY", "SYR", "SYRIA", "SYRIAN", "SYRIANARABREPUBLIC", "SYRIEN", "СИРИЯ", "СИРІЯ":
+		return SYR
+	case "SK", "SVK", "CSHH", "SLOVAKIA", "SLOVAK", "SLOVAKIYA", "SLOVACIA", "SLOVAC", "SLOVACIYA", "SLOWAKEI", "СЛОВАКИЯ", "СЛОВАЧЧИНА":
+		return SVK
+	case "SI", "SVN", "SLO", "SLOVENIA", "SLOVENIYA", "SLOWENIEN", "СЛОВЕНИЯ", "СЛОВЕНІЯ":
+		return SVN
+	case "US", "USA", "UNITEDSTATES", "UNITEDSTATESOFAMERICA", "USOFAMERICA", "USAMERICA", "VEREINIGTESTAATENVONAMERIKA", "СОЕДИНЕННЫЕШТАТЫ", "СПОЛУЧЕНІШТАТИ":
+		return USA
+	case "SB", "SLB", "SOLOMONISLANDS", "SOLOMON", "SALOMONEN", "СОЛОМОНОВЫОСТРОВА", "СОЛОМОНОВІОСТРОВИ":
+		return SLB
+	case "SO", "SOM", "SOMALIA", "SOMALI", "СОМАЛИ", "СОМАЛІ":
+		return SOM
+	case "SD", "SDN", "SUDAN", "SUDANE", "UMHŪRIYYATASSŪDĀN", "SŪDĀN", "جمهوريةالسودان", "السودان", "СУДАН":
+		return SDN
+	case "SR", "SUR", "SME", "SURINAME", "SURINAM", "СУРИНАМ", "СУРІНАМ":
+		return SUR
+	case "SL", "SLE", "WAL", "SIERRALEONE", "SIERRALEON", "SIERALEONE", "SIERALEON", "СЬЕРРАЛЕОНЕ", "СЬЄРРАЛЕОНЕ":
+		return SLE
+	case "TJ", "TJK", "TAJIKISTAN", "TADJIKISTAN", "TADSCHIKISTAN", "ТАДЖИКИСТАН", "ТАДЖИКІСТАН":
+		return TJK
+	case "TW", "TWN", "TPE", "TAIWAN", "TAIWANIAN", "PROVINCEOFCHINA", "PROVINCECHINA", "ТАЙВАНЬ":
+		return TWN
+	case "TH", "THA", "THAILAND", "TAILAND", "THAI", "THAYLAND", "TAYLAND", "ТАЙЛАНД", "ТАЇЛАНД":
+		return THA
+	case "TZ", "TZA", "EAT", "EAZ", "TANZANIA", "TANZANIYA", "TANSANIA", "TANZANIAUNITEDREPUBLICOF", "TANZANIAUNITEDREPUBLIC", "REPUBLICOFTANZANIA", "TANZANIAREPUBLIC", "ТАНЗАНИЯ", "ТАНЗАНІЯ":
+		return TZA
+	case "TG", "TGO", "TOGO", "ТОГО":
+		return TGO
+	case "TK", "TKL", "TOKELAU", "ТОКЕЛАУ":
+		return TKL
+	case "TO", "TON", "TONGA", "ТОНГА":
+		return TON
+	case "TT", "TTO", "TRINIDADANDTOBAGO", "TRINIDAD", "TRINADUNDTOBAGO", "ТРИНИДАДИТОБАГО", "ТРИНІДАДІТОБАГО":
+		return TTO
+	case "TV", "TUV", "TUVALU", "ТУВАЛУ":
+		return TUV
+	case "TN", "TUN", "TUNISIA", "TUNESIEN", "ТУНИС", "ТУНІС":
+		return TUN
+	case "TM", "TKM", "TMN", "TURKMENISTAN", "TURKMENISTON", "TURKMENI", "TURKMENIA", "TURKMENIYA", "ТУРКМЕНИСТАН", "ТУРКМЕНІСТАН":
+		return TKM
+	case "TR", "TUR", "TURKEY", "TURCIA", "TURKISH", "TÜRKEI", "TUERKEI", "TÜRKIYE", "REPUBLICOFTÜRKIYE", "TÜRKIYEREPUBLICOF", "TÜRKIYEREPUBLIC", "REPUBLICTÜRKIYE", "ТУРЦИЯ", "ТУРЕЧЧИНА":
+		return TUR
+	case "UG", "UGA", "EAU", "UGANDA", "УГАНДА":
+		return UGA
+	case "UZ", "UZB", "UZBEKISTAN", "UZBEKISTON", "УЗБЕКИСТАН", "УЗБЕКІСТАН":
+		return UZB
+	case "UA", "UKR", "UKRAINE", "UKRAINA", "УКРАИНА", "УКРАЇНА": //nolint
+		return UKR
+	case "UY", "URY", "URUGUAY", "URUGWAY", "УРУГВАЙ":
+		return URY
+	case "XW", "XWA", "WALES", "УЭЛЬС", "УЕЛЬС":
+		return XWA
+	case "FO", "FRO", "FAROEISLANDS", "FAROE", "FÄRÖER", "FAEROERER", "ФАРЕРСКИЕОСТРОВА", "ФАРЕРСЬКІОСТРОВИ":
+		return FRO
+	case "FJ", "FJI", "FIJI", "FIDSCHI", "ФИДЖИ", "ФІДЖІ":
+		return FJI
+	case "PH", "PHL", "PHI", "PHILIPPINES", "PHILIPINES", "PI", "RP", "PHILIPPINEN", "ФИЛИППИНЫ", "ФІЛІПІНИ": //nolint
+		return PHL
+	case "FI", "SF", "FIN", "FINLAND", "FINNISH", "FINNLAND", "ФИНЛЯНДИЯ", "ФІНЛЯНДІЯ":
+		return FIN
+	case "FK", "FLK", "FALKLANDISLANDSMALVINAS", "MALVINAS", "FALKLANDISLANDS", "FALKLAND", "FALKLANDINSELN", "ФОЛКЛЕНДСКИЕОСТРОВА", "ФОЛКЛЕНДСЬКІОСТРОВИ":
+		return FLK
+	case "FR", "CP", "FX", "FRA", "FXX", "CPT", "FXFR", "FRANCE", "FRENCH", "FRANKREICH", "ФРАНЦИЯ", "ФРАНЦІЯ":
+		return FRA
+	case "GF", "GUF", "FRENCHGUIANA", "GUIANA", "FRANZÖSISCHGUYANA", "FRANZOESISCHGUYANA", "ФРАНЦУЗСКАЯГВИАНА", "ФРАНЦУЗЬКАГВІАНА":
+		return GUF
+	case "PF", "PYF", "FRENCHPOLYNESIA", "POLYNESIA", "FRANZÖSISCHPOLYNESIEN", "FRANZOESISCHPOLYNESIEN", "ФРАНЦУЗСКАЯПОЛИНЕЗИЯ", "ФРАНЦУЗЬКАПОЛІНЕЗІЯ":
+		return PYF
+	case "TF", "ATF", "FRENCHSOUTHERNTERRITORIES", "SOUTHERNTERRITORIESFRENCH", "FRANZÖSISCHESÜDUNDANTARKTISGEBIETE", "FRANZOESISCHESUEDUNDANTARKTISGEBIETE", "ФРАНЦУЗСКИЕЮЖНЫЕИАНТАРКТИЧЕСКИЕТЕРРИТОРИИ", "ФРАНЦУЗЬКІПІВДЕННІІАНТАРКТИЧНІТЕРИТОРІЇ":
+		return ATF
+	case "HR", "HRV", "CRO", "CROATIA", "KROATIA", "KROATIEN", "ХОРВАТИЯ", "ХОРВАТІЯ":
+		return HRV
+	case "CF", "CAF", "CTA", "RCA", "CENTRALAFRICANREPUBLIC", "CENTRALAFRICANREP", "CENTRALAFRICAN", "ZENTRALAFRIKA", "ЦЕНТРАЛЬНОАФРИКАНСКАЯРЕСПУБЛИКА", "ЦЕНТРАЛЬНОАФРИКАНСЬКАРЕСПУБЛІКА":
+		return CAF
+	case "TD", "TCD", "CHAD", "TSCHAD", "ЧАД":
+		return TCD
+	case "CZ", "CZE", "CZECHIA", "CZECHIYA", "CZECHREPUBLIC", "REPUBLICOFCZECH", "CZECH", "TSCHECHIEN", "CHEHIA", "CHEHIYA", "ЧЕХИЯ", "ЧЕХІЯ":
+		return CZE
+	case "CL", "CHL", "RCH", "CHILE", "CHILI", "CHILLE", "ЧИЛИ", "ЧИЛІ":
+		return CHL
+	case "CH", "CHE", "SWITZERLAND", "SWISS", "SCHWEIZ", "SUISSE", "SVIZZERA", "SVIZRA", "HELVETIA", "SHVEYCARIA", "SHVEYCARIYA", "ШВЕЙЦАРИЯ", "ШВЕЙЦАРІЯ":
+		return CHE
+	case "SE", "SWE", "SWEDEN", "SCHWEDEN", "SHWEDEN", "SHVECIA", "SHVECIYA", "ШВЕЦИЯ", "ШВЕЦІЯ":
+		return SWE
+	case "XS", "XSC", "SCOTLAND", "SCHOTTLAND", "ШОТЛАНДИЯ", "ШОТЛАНДІЯ":
+		return XSC
+	case "LK", "LKA", "SRILANKA", "ШРИЛАНКА", "ШРІЛАНКА":
+		return LKA
+	case "EC", "ECU", "ECUADOR", "ЭКВАДОР", "ЕКВАДОР":
+		return ECU
+	case "GQ", "GNQ", "EQG", "GEQ", "EQUATORIALGUINEA", "ÄQUATORIALGUINEA", "AEQUATORIALGUINEA", "ЭКВАТОРИАЛЬНАЯГВИНЕЯ", "ЕКВАТОРІАЛЬНАГВІНЕЯ":
+		return GNQ
+	case "ER", "ERI", "ERITREA", "ЭРИТРЕЯ", "ЕРІТРЕЯ":
+		return ERI
+	case "EE", "EST", "ESTONIA", "EW", "ESTLAND", "ЭСТОНИЯ", "ЕСТОНІЯ":
+		return EST
+	case "ET", "ETH", "ETHIOPIA", "ÄTHOPIEN", "AETHOPIEN", "ЭФИОПИЯ", "ЕТІОПІЯ":
+		return ETH
+	case "ZA", "ZAF", "SOUTHAFRICA", "SÜDAFRIKA", "SUEDAFRIKA", "ЮЖНАЯАФРИКА", "ПІВДЕННААФРИКА":
+		return ZAF
+	case "YU", "YUG", "YUGOSLAVIA", "UGOSLAVIA", "YUGOSLAVIYA", "UGOSLAVIYA", "SERBIAANDMONTENEGRO", "CS", "SCG", "JUGOSLAWIEN", "ЮГОСЛАВИЯ", "ЮГОСЛАВІЯ":
+		return YUG
+	case "GS", "SGS", "SOUTHGEORGIAANDTHESOUTHSANDWICHISLANDS", "SOUTHGEORGIAANDTHESOUTHSANDWICH", "SOUTHGEORGIATHESOUTHSWICHISLANDS", "SOUTHGEORGIA", "SÜDGEORGIEN", "SUEDGEORGIEN", "ЮЖНАЯДЖОРДЖИЯИЮЖНЫЕСАНДВИЧЕВЫОСТРОВА", "ПІВДЕННАДЖОРДЖІЯІПІВДЕННІСАНДВІЧЕВІОСТРОВИ":
+		return SGS
+	case "JM", "JAM", "JAMAICA", "JAMAIKA", "YAMAICA", "YAMAIKA", "JA", "ЯМАЙКА":
+		return JAM
+	case "ME", "MNE", "MONTENEGRO", "ЧЕРНОГОРИЯ", "ЧОРНОГОРІЯ":
+		return MNE
+	case "BL", "BLM", "SAINTBARTHELEMY", "STBARTHELEMY", "SAINTBARTHÉLEMY", "STBARTHÉLEMY", "СЕНБАРТЕЛЕМИ", "СЕНБАРТЕЛЕМІ":
+		return BLM
+	case "SX", "SXM", "SINTMAARTENDUTCH", "SAINTMAARTEN", "SINTMAARTEN", "STMAARTEN", "СІНТМАРТЕН":
+		return SXM
+	case "RS", "SRB", "CSXX", "SERBIA", "SERBIYA", "SERBIEN", "СЕРБИЯ", "СЕРБІЯ":
+		return SRB
+	case "AX", "ALA", "ALANDISLANDS", "ISLANDSALAND", "ALAND", "ÅLANDISLANDS", "ÅLAND", "ISLANDSÅLAND", "АЛАНДСКИЕОСТРОВА", "АЛАНДСЬКІОСТРОВИ":
+		return ALA
+	case "BQ", "BES", "BONAIRE", "BONAIR", "BONEIRU", "BONAIRESINTEUSTATIUSANDSABA", "BONAIRESINTEUSTATIUSSABA", "BONAIRESTEUSTANDSABA", "BONAIRESTEUSTSABA", "SINTEUSTATIUSANDSABA", "SINTEUSTATIUS", "CARIBBEANNETHERLANDS", "БОНАИР", "СИНТЭСТАТИУСИСАБА", "БОНАІР", "СІНТЕСТАТІУСІСАБА":
+		return BES
+	case "GG", "GGY", "GBA", "GBG", "GUERNSEY", "ГЕРНСИ", "ГЕРНСІ":
+		return GGY
+	case "JE", "JEY", "GBJ", "JERSEY", "JERSIEY", "ДЖЕРСИ", "ДЖЕРСІ":
+		return JEY
+	case "CW", "CUW", "CURACAO", "CURAÇAO", "CURAQAO", "CURAKAO", "KURACAO", "KURAKAO", "КЮРАСАО":
+		return CUW
+	case "MF", "MAF", "SAINTMARTINFRENCH", "STMARTINFRENCH", "SANKTMARTIN", "SAINTMARTIN", "СЕНМАРТЕН":
+		return MAF
+	case "SS", "SSD", "SOUTHSUDAN", "SOUTHSUDANE", "REPUBLICOFSOUTHSUDAN", "SOUTHSUDANREPUBLICOF", "SOUTHSUDANREPUBLIC", "PAGUOTTHUDÄN", "SÜDSUDAN", "SUEDSUDAN", "ЮЖНЫЙСУДАН", "ПІВДЕННИЙСУДАН":
+		return SSD
+	case "JP", "JPN", "JAPAN", "ЯПОНИЯ", "ЯПОНІЯ":
+		return JPN
+	case "XK", "XKX", "XKS", "KOS", "KOSOVO", "COSOVO", "КОСОВО", "KOSOVËS", "РЕПУБЛИКАКОСОВО", "РЕПУБЛІКАКОСОВО":
+		return XKX
+	case "XX", "NONE", "NON", "NICHT", "NICHTS", "НЕТ", "НЕМАЄ":
+		return None
+	case "INTERNATIONAL", "МЕЖДУНАРОДНЫЙ", "МІЖНАРОДНИЙ":
+		return International
+	case "UIFN", "INTERNATIONALFREEPHONE", "TOLLFREEPHONE", "БЕСПЛАТНЫЙМЕЖДУНАРОДНЫЙТЕЛЕФОН", "БЕЗКОШТОВНИЙМІЖНАРОДНИЙТЕЛЕФОН":
+		return NonCountryInternationalFreephone
+	case "INMARSAT", "ИНМАРСАТ", "ІНМАРСАТ":
+		return NonCountryInmarsat
+	case "MMS", "MARITIMEMOBILESERVICE", "MARITIMEMOBILESERVICES", "MARITIMEMOBILE", "MARITIME", "МОРСКАЯМОБИЛЬНАЯСЛУЖБА", "МОРСЬКАМОБІЛЬНАСЛУЖБА":
+		return NonCountryMaritimeMobileService
+	case "UNIVERSALPERSONALTELECOMMUNICATIONSSERVICES", "UNIVERSALPERSONALTELECOMMUNICATIONSSERVICE", "UNIVERSALPERSONALTELECOMMUNICATIONS", "UNIVERSALPERSONALTELECOMMUNICATION", "УНИВЕРСАЛЬНЫЕЛИЧНЫЕТЕЛЕКОММУНИКАЦИОННЫЕУСЛУГИ", "УНІВЕРСАЛЬНІОСОБИСТІТЕЛЕКОМУНІКАЦІЙНІПОСЛУГИ":
+		return NonCountryUniversalPersonalTelecommunicationsServices
+	case "NCP", "NATIONALNONCOMMERCIALPURPOSES", "NONCOMMERCIALPURPOSES", "NATIONALNONCOMMERCIAL", "NONCOMMERCIAL", "НАЦИОНАЛЬНЫЕНЕКОММЕРЧЕСКИЕЦЕЛИ", "НАЦІОНАЛЬНІНЕКОМЕРЦІЙНІЦІЛІ":
+		return NonCountryNationalNonCommercialPurposes
+	case "GMSS", "GLOBALMOBILESATELLITESYSTEM", "GLOBALMOBILESATELITESYSTEM", "GLOBALMOBILESATELLITE", "GLOBALMOBILESATELITE", "ГЛОБАЛЬНАЯМОБИЛЬНАЯСПУТНИКОВАЯСИСТЕМА", "ГЛОБАЛЬНАМОБІЛЬНАСУПУТНИКОВАСИСТЕМА":
+		return NonCountryGlobalMobileSatelliteSystem
+	case "INTERNATIONALNETWORKS", "INTERNATIONALNETWORKSSERVICE", "INTERNATIONALNETWORKSSERVICES", "МЕЖДУНАРОДНЫЕСЕТИ", "МІЖНАРОДНІМЕРЕЖІ":
+		return NonCountryInternationalNetworks
+	case "DISASTERRELIEF", "DISASTER", "ГУМАНИТАРНАЯПОМОЩЬ", "ГУМАНІТАРНАДОПОМОГА":
+		return NonCountryDisasterRelief
+	case "IPRS", "INTERNATIONALPREMIUMRATESERVICE", "PREMIUMRATESERVICE", "INTERNATIONALPREMIUMRATESERVICES", "PREMIUMRATESERVICES", "МЕЖДУНАРОДНЫЙПРЕМИУМСЕРВИС", "МІЖНАРОДНИ ПРЕМІУМСЕРВІС":
+		return NonCountryInternationalPremiumRateService
+	case "ITPCS", "INTERNATIONALTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICETRIAL", "INTERNATIONALTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICE", "InternationalTELECOMMUNICATIONSPUBLICCORRESPONDENCESERVICES", "InternationalTELECOMMUNICATIONSCORRESPONDENCESERVICE", "InternationalTELECOMMUNICATIONSCORRESPONDENCESERVICES", "МЕЖДУНАРОДНАЯОБЩЕСТВЕННАЯТЕЛЕКОММУНИКАЦИОННАЯСЛУЖБА", "МІЖНАРОДНАГРОМАДСЬКАТЕЛЕКОМУНІКАЦІЙНАСЛУЖБА":
+		return NonCountryInternationalTelecommunicationsCorrespondenceService
 	}
 	return Unknown
 }
